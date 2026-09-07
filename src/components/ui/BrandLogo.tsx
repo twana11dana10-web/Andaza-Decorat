@@ -7,6 +7,7 @@ interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'hero'
   showText?: boolean
   showTagline?: boolean
+  variant?: 'emblem' | 'full'
 }
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
@@ -14,98 +15,117 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   size = 'md',
   showText = true,
   showTagline = false,
+  variant = 'full',
 }) => {
-  const { t } = useLanguage()
+  const { t, language, isRTL } = useLanguage()
 
   const sizeMap = {
-    sm: { icon: 'w-6 h-6 min-[380px]:w-8 min-[380px]:h-8 sm:w-10 sm:h-10', text: 'hidden min-[380px]:block text-[11px] min-[420px]:text-xs sm:text-xl md:text-2xl font-bold tracking-tight sm:tracking-wider', sub: 'text-[10px] sm:text-xs' },
-    md: { icon: 'w-6.5 h-6.5 min-[380px]:w-8 min-[380px]:h-8 sm:w-10 sm:h-10', text: 'hidden min-[380px]:block text-[11px] min-[420px]:text-xs sm:text-xl md:text-2xl font-bold tracking-tight sm:tracking-wider', sub: 'text-[10px] sm:text-xs' },
-    lg: { icon: 'w-10 h-10 sm:w-14 sm:h-14', text: 'text-lg sm:text-3xl font-bold tracking-widest', sub: 'text-xs sm:text-sm' },
-    hero: { icon: 'w-16 h-16 sm:w-24 sm:h-24', text: 'text-xl sm:text-4xl font-bold tracking-widest', sub: 'text-xs sm:text-sm' },
+    sm: {
+      emblem: 'h-7 min-[380px]:h-8.5 sm:h-11 md:h-12 w-auto object-contain',
+      textImg: 'h-3 min-[380px]:h-3.5 sm:h-5 md:h-5.5 w-auto object-contain',
+      text: 'text-xs min-[380px]:text-sm sm:text-base md:text-lg font-bold tracking-tight',
+      sub: 'text-[9px] sm:text-xs',
+    },
+    md: {
+      emblem: 'h-9 min-[380px]:h-10.5 sm:h-13 md:h-15 w-auto object-contain',
+      textImg: 'h-3.5 min-[380px]:h-4.5 sm:h-6 md:h-7 w-auto object-contain',
+      text: 'text-sm sm:text-lg md:text-xl font-bold tracking-tight',
+      sub: 'text-[10px] sm:text-xs',
+    },
+    lg: {
+      emblem: 'h-13 sm:h-18 md:h-22 w-auto object-contain',
+      textImg: 'h-5 sm:h-8 md:h-10 w-auto object-contain',
+      text: 'text-lg sm:text-2xl md:text-3xl font-bold tracking-wider',
+      sub: 'text-xs sm:text-sm',
+    },
+    hero: {
+      emblem: 'h-18 sm:h-26 md:h-32 w-auto object-contain',
+      textImg: 'h-7 sm:h-11 md:h-14 w-auto object-contain',
+      text: 'text-xl sm:text-3xl md:text-4xl font-bold tracking-wider',
+      sub: 'text-xs sm:text-sm',
+    },
   }
 
-  const { icon, text, sub } = sizeMap[size]
+  const { emblem, textImg, text, sub } = sizeMap[size]
+
+  // For Kurdish and Arabic, render the localized script alongside the emblem
+  const isRtlLang = isRTL || language === 'ar' || language === 'ku'
 
   return (
-    <div className={cn("inline-flex items-center gap-1.5 sm:gap-3 select-none", className)}>
-      {/* Sleek Emblem */}
-      <div className={cn("relative flex items-center justify-center shrink-0", icon)}>
-        {/* Glow — smaller on mobile to prevent bleed */}
-        <div className="absolute inset-0 bg-sky-500/15 sm:bg-sky-500/20 rounded-lg sm:rounded-xl blur-sm sm:blur-md pointer-events-none" />
-        
-        <svg
-          viewBox="0 0 100 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full drop-shadow-[0_1px_4px_rgba(14,165,233,0.2)] sm:drop-shadow-[0_2px_8px_rgba(14,165,233,0.3)] dark:drop-shadow-[0_1px_6px_rgba(56,189,248,0.35)] dark:sm:drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)] transition-transform duration-300 group-hover:scale-105"
-        >
-          {/* Outer Luxury Squircle Frame */}
-          <rect
-            x="8"
-            y="8"
-            width="84"
-            height="84"
-            rx="22"
-            className="stroke-sky-600 dark:stroke-sky-400"
-            strokeWidth="3.5"
-          />
-          {/* Inner Accent Line */}
-          <rect
-            x="14"
-            y="14"
-            width="72"
-            height="72"
-            rx="16"
-            className="stroke-slate-300/80 dark:stroke-white/15"
-            strokeWidth="1.5"
-          />
+    <div
+      className={cn(
+        "inline-flex items-center gap-2 sm:gap-3 select-none group",
+        className
+      )}
+    >
+      {/* 1. Architectural AD Monogram / Emblem */}
+      <div className="relative flex items-center justify-center shrink-0">
+        {/* Subtle Luxury Ambient Glow */}
+        <div className="absolute inset-0 bg-amber-400/15 dark:bg-amber-400/20 rounded-full blur-md sm:blur-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {/* Letter F (Dark Charcoal in Light Mode, Crisp White in Dark Mode) */}
-          <path
-            d="M 28 26 L 28 74 M 28 26 L 47 26 M 28 49 L 43 49"
-            className="stroke-slate-900 dark:stroke-slate-100"
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* Letter D (Sky Blue in both modes) */}
-          <path
-            d="M 52 26 L 52 74 M 52 26 C 75 26 80 37 80 50 C 80 63 75 74 52 74"
-            className="stroke-sky-600 dark:stroke-sky-400"
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* Center Luxury Accent Dot */}
-          <circle cx="50" cy="50" r="3.5" className="fill-sky-600 dark:fill-sky-400" />
-        </svg>
+        <img
+          src="/images/andaza-emblem-transparent.png"
+          alt="ANDAZA DECORAT"
+          className={cn(
+            "transition-all duration-300 group-hover:scale-105 select-none drop-shadow-[0_2px_8px_rgba(212,175,55,0.2)] dark:drop-shadow-[0_2px_12px_rgba(245,158,11,0.3)]",
+            emblem
+          )}
+          loading="eager"
+        />
       </div>
 
-      {/* Brand Typography */}
-      {showText && (
-        <div className="flex flex-col text-left rtl:text-right">
-          <span
-            className={cn(
-              "text-slate-900 dark:text-white uppercase leading-none font-sans transition-colors whitespace-nowrap",
-              text
-            )}
-          >
-            {t('brand.name')}
-          </span>
-          {showTagline && (
-            <span
-              className={cn(
-                "text-sky-400 uppercase font-medium mt-1 leading-none tracking-widest",
-                sub
+      {/* 2. Brand Name next to the logo on the right */}
+      {showText && variant !== 'emblem' && (
+        <div className="flex flex-col justify-center shrink min-w-0">
+          {isRtlLang ? (
+            /* Localized script for Kurdish / Arabic */
+            <div className="flex flex-col">
+              <span
+                className={cn(
+                  "text-slate-900 dark:text-amber-100 font-sans font-extrabold leading-tight transition-colors whitespace-nowrap",
+                  text
+                )}
+              >
+                {t('brand.name')}
+              </span>
+              {showTagline && (
+                <span
+                  className={cn(
+                    "text-amber-600 dark:text-amber-400/90 font-medium leading-none tracking-normal mt-0.5",
+                    sub
+                  )}
+                >
+                  {t('brand.tagline')}
+                </span>
               )}
-            >
-              {t('brand.tagline')}
-            </span>
+            </div>
+          ) : (
+            /* Authentic Gold 3D Metallic Lettering for English / Turkish */
+            <div className="flex flex-col justify-center">
+              <img
+                src="/images/andaza-text-transparent.png"
+                alt="ANDAZA DECORAT"
+                className={cn(
+                  "transition-all duration-300 group-hover:brightness-110 select-none drop-shadow-[0_1px_4px_rgba(212,175,55,0.25)] dark:drop-shadow-[0_1px_6px_rgba(245,158,11,0.35)]",
+                  textImg
+                )}
+                loading="eager"
+              />
+              {showTagline && (
+                <span
+                  className={cn(
+                    "text-amber-600 dark:text-amber-400/90 uppercase font-semibold leading-none tracking-widest mt-1",
+                    sub
+                  )}
+                >
+                  {t('brand.tagline')}
+                </span>
+              )}
+            </div>
           )}
         </div>
       )}
     </div>
   )
 }
+

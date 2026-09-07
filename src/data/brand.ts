@@ -1,19 +1,25 @@
 export const BRAND_CONFIG = {
-  name: "FAKHAMA DECORAT",
+  name: "ANDAZA DECORAT",
   tagline: "Architectural Living & Curated Objects",
   currency: "IQD",
   subtitle: "A digital showroom dedicated to bespoke materiality, sculptural proportions, and timeless spaces.",
   showroomAddress: "742 Al-Andalus Boulevard, Design District, Riyadh, KSA",
   contact: {
-    email: "atelier@fakhamadecorat.com",
+    email: "atelier@andazadecorat.com",
     phone: "07517447522",
     whatsapp: "9647517447522",
     hours: "Sat – Thu: 10:00 AM – 9:00 PM (By Appointment & Walk-in)",
   },
   social: {
-    instagram: "@fakhamadecorat",
-    tiktok: "https://www.tiktok.com/@fakhama_decorat?_r=1&_t=ZS-99Jn6a2X2Qf",
-    linkedin: "fakhama-decorat",
+    instagram: "@andazadecorat",
+    tiktok: "https://www.tiktok.com/@andaza_decorat",
+    linkedin: "andaza-decorat",
+  },
+  logo: {
+    full: '/images/andaza-logo-transparent.png',
+    transparent: '/images/andaza-logo-transparent.png',
+    emblem: '/images/andaza-emblem-transparent.png',
+    emblemTransparent: '/images/andaza-emblem-transparent.png',
   },
   storage: {
     // Cloud storage configurations for direct WhatsApp invoice links

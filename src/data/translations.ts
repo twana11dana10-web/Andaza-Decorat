@@ -47,7 +47,7 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
 export const TRANSLATIONS: Record<Language, Record<string, string>> = {
   en: {
     // Brand & Header
-    'brand.name': 'FAKHAMA DECORAT',
+    'brand.name': 'ANDAZA DECORAT',
     'brand.tagline': 'Luxury Interior & Architectural Showroom',
     'header.shoppingBox': 'Shopping Box',
     'header.themeToggle': 'Switch theme mode',
@@ -123,7 +123,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
     // WhatsApp Floating Help
     'help.floatingText': 'If you have any questions, click here',
-    'help.whatsappPreset': 'Hello FAKHAMA DECORAT! I need assistance with your showroom collections.',
+    'help.whatsappPreset': 'Hello ANDAZA DECORAT! I need assistance with your showroom collections.',
 
     // Common
     'common.required': '*',
@@ -202,7 +202,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
   ar: {
     // Brand & Header
-    'brand.name': 'فخامة للديكورات',
+    'brand.name': 'أندازة ديكورات',
     'brand.tagline': 'معرض الديكور الداخلي والمعماري الفاخر',
     'header.shoppingBox': 'سلة المشتريات',
     'header.themeToggle': 'تغيير وضع المظهر',
@@ -278,7 +278,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
     // WhatsApp Floating Help
     'help.floatingText': 'إذا كان لديك أي سؤال، اضغط هنا',
-    'help.whatsappPreset': 'مرحباً فخامة للديكورات! أحتاج إلى مساعدة بخصوص معروضاتكم.',
+    'help.whatsappPreset': 'مرحباً أندازة ديكورات! أحتاج إلى مساعدة بخصوص معروضاتكم.',
 
     // Common
     'common.required': '*',
@@ -357,7 +357,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
   ku: {
     // Brand & Header
-    'brand.name': 'فەخامە دیکۆرات',
+    'brand.name': 'ئەندازە دیکۆرات',
     'brand.tagline': 'پێشانگای ناوازەی دیکۆرات و دیزاینی ناوخۆیی',
     'header.shoppingBox': 'سەبەتەی کڕین',
     'header.themeToggle': 'گۆڕینی دۆخی ڕەنگ',
@@ -433,7 +433,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
     // WhatsApp Floating Help
     'help.floatingText': 'ئەگەر پرسیارێکت هەیە، ئێرە دابگرە',
-    'help.whatsappPreset': 'سڵاو فەخامە دیکۆرات! پێویستم بە هاوکارییە دەربارەی بەرهەمەکانتان.',
+    'help.whatsappPreset': 'سڵاو ئەندازە دیکۆرات! پێویستم بە هاوکارییە دەربارەی بەرهەمەکانتان.',
 
     // Common
     'common.required': '*',
@@ -512,7 +512,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
   tr: {
     // Brand & Header
-    'brand.name': 'FAKHAMA DECORAT',
+    'brand.name': 'ANDAZA DECORAT',
     'brand.tagline': 'Lüks İç Mimari ve Tasarım Showroomu',
     'header.shoppingBox': 'Alışveriş Kutusu',
     'header.themeToggle': 'Tema modunu değiştir',
@@ -588,7 +588,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
     // WhatsApp Floating Help
     'help.floatingText': 'Herhangi bir sorunuz varsa, buraya tıklayın',
-    'help.whatsappPreset': 'Merhaba FAKHAMA DECORAT! Showroom koleksiyonlarınız hakkında yardıma ihtiyacım var.',
+    'help.whatsappPreset': 'Merhaba ANDAZA DECORAT! Showroom koleksiyonlarınız hakkında yardıma ihtiyacım var.',
 
     // Common
     'common.required': '*',
