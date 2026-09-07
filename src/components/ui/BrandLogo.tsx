@@ -60,14 +60,11 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     >
       {/* 1. Architectural AD Monogram / Emblem */}
       <div className="relative flex items-center justify-center shrink-0">
-        {/* Subtle Luxury Ambient Glow */}
-        <div className="absolute inset-0 bg-amber-400/15 dark:bg-amber-400/20 rounded-full blur-md sm:blur-lg pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
         <img
           src="/images/andaza-emblem-transparent.png"
           alt="ANDAZA DECORAT"
           className={cn(
-            "transition-all duration-300 group-hover:scale-105 select-none drop-shadow-[0_2px_8px_rgba(212,175,55,0.2)] dark:drop-shadow-[0_2px_12px_rgba(245,158,11,0.3)]",
+            "transition-all duration-300 hover:scale-105 select-none",
             emblem
           )}
           loading="eager"
@@ -106,7 +103,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
                 src="/images/andaza-text-transparent.png"
                 alt="ANDAZA DECORAT"
                 className={cn(
-                  "transition-all duration-300 group-hover:brightness-110 select-none drop-shadow-[0_1px_4px_rgba(212,175,55,0.25)] dark:drop-shadow-[0_1px_6px_rgba(245,158,11,0.35)]",
+                  "transition-all duration-300 group-hover:brightness-110 select-none",
                   textImg
                 )}
                 loading="eager"
