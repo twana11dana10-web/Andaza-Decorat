@@ -18,7 +18,7 @@ const badgeVariants = cva(
         accent:
           "border border-primary/30 bg-primary/10 text-primary font-medium tracking-wide",
         stock:
-          "border border-emerald-500/20 bg-emerald-500/10 text-emerald-700",
+          "border border-sky-500/20 bg-sky-500/10 text-sky-700 dark:text-sky-300",
         mto:
           "border border-amber-500/20 bg-amber-500/10 text-amber-700",
       },

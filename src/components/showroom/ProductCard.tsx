@@ -78,7 +78,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         "bg-white dark:bg-[#131823] hover:bg-slate-50/95 dark:hover:bg-[#161e2e]",
         "border transition-all",
         isInCart
-          ? "border-emerald-500 dark:border-emerald-400 ring-2 ring-emerald-400/60 dark:ring-emerald-400/70 shadow-[0_6px_22px_rgba(0,0,0,0.08),0_0_26px_rgba(16,185,129,0.36),0_0_40px_rgba(52,211,153,0.18)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.7),0_0_30px_rgba(52,211,153,0.42),0_0_50px_rgba(16,185,129,0.2)]"
+          ? "border-sky-500 dark:border-sky-400 ring-2 ring-sky-400/60 dark:ring-sky-400/70 shadow-[0_6px_22px_rgba(0,0,0,0.08),0_0_26px_rgba(14,165,233,0.36),0_0_40px_rgba(56,189,248,0.18)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.7),0_0_30px_rgba(56,189,248,0.42),0_0_50px_rgba(14,165,233,0.2)]"
           : "border-slate-200/90 dark:border-slate-800/90 hover:border-amber-400 dark:hover:border-amber-400 shadow-[0_4px_16px_rgba(0,0,0,0.05),0_0_16px_rgba(217,170,75,0.12)] dark:shadow-[0_6px_24px_rgba(0,0,0,0.6),0_0_20px_rgba(217,170,75,0.18)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.12),0_0_30px_rgba(217,170,75,0.42),0_0_55px_rgba(217,170,75,0.18)] dark:hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_35px_rgba(217,170,75,0.52),0_0_65px_rgba(217,170,75,0.24)]",
         className
       )}
@@ -88,7 +88,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         className={cn(
           "absolute -top-12 -right-12 w-36 h-36 rounded-full blur-2xl pointer-events-none transition-all duration-500",
           isInCart
-            ? "bg-emerald-400/25 dark:bg-emerald-400/30 opacity-90 scale-110"
+            ? "bg-sky-400/25 dark:bg-sky-400/30 opacity-90 scale-110"
             : "bg-amber-400/20 dark:bg-amber-400/25 opacity-40 group-hover:opacity-100 group-hover:scale-125"
         )}
       />
@@ -96,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         className={cn(
           "absolute -bottom-10 -left-10 w-28 h-28 rounded-full blur-xl pointer-events-none transition-opacity duration-500",
           isInCart
-            ? "bg-emerald-500/15 dark:bg-emerald-600/20 opacity-80"
+            ? "bg-sky-500/15 dark:bg-sky-600/20 opacity-80"
             : "bg-amber-500/10 dark:bg-amber-600/15 opacity-0 group-hover:opacity-100"
         )}
       />
@@ -106,7 +106,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         className={cn(
           "relative aspect-square w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1.5 sm:mb-3.5 transition-colors shadow-inner",
           isInCart
-            ? "border-emerald-400/50 dark:border-emerald-400/40"
+            ? "border-sky-400/50 dark:border-sky-400/40"
             : "border-slate-200 dark:border-slate-800/70 group-hover:border-amber-400/40 dark:group-hover:border-amber-400/30"
         )}
       >
@@ -129,7 +129,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             className={cn(
               "font-sans font-semibold text-xs sm:text-[15px] transition-colors leading-snug line-clamp-2 min-h-[2.1rem] sm:min-h-[2.6rem]",
               isInCart
-                ? "text-emerald-700 dark:text-emerald-300"
+                ? "text-sky-700 dark:text-sky-300"
                 : "text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300"
             )}
           >
@@ -146,14 +146,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className={cn(
           "pt-1 sm:pt-2 flex items-center justify-between gap-1 sm:gap-2 -mx-2 sm:-mx-4.5 -mb-2 sm:-mb-4.5 px-2 sm:px-4.5 pb-2 sm:pb-4.5 mt-0.5 sm:mt-1.5 rounded-b-xl sm:rounded-b-2xl transition-all duration-300",
           isInCart
-            ? "bg-emerald-50/80 dark:bg-emerald-950/30 border-t border-emerald-400/40 dark:border-emerald-500/30 shadow-[inset_0_2px_8px_rgba(16,185,129,0.08)] dark:shadow-[inset_0_2px_8px_rgba(16,185,129,0.12)]"
+            ? "bg-sky-50/80 dark:bg-sky-950/30 border-t border-sky-400/40 dark:border-sky-500/30 shadow-[inset_0_2px_8px_rgba(14,165,233,0.08)] dark:shadow-[inset_0_2px_8px_rgba(14,165,233,0.12)]"
             : "border-t border-transparent"
         )}>
           <div className="flex items-baseline min-w-0">
             <span className={cn(
               "font-sans font-bold text-[11px] min-[360px]:text-xs sm:text-[16px] tracking-tight transition-colors duration-300 truncate",
               isInCart
-                ? "text-emerald-700 dark:text-emerald-300"
+                ? "text-sky-700 dark:text-sky-300"
                 : "text-slate-900 dark:text-white"
             )}>
               {formatPrice(product.price, product.currency)}

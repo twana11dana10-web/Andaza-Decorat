@@ -48,7 +48,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
   en: {
     // Brand & Header
     'brand.name': 'ANDAZA DECORAT',
-    'brand.tagline': 'Luxury Interior & Architectural Showroom',
+    'brand.tagline': 'Luxury Decoration',
     'header.shoppingBox': 'Shopping Box',
     'header.themeToggle': 'Switch theme mode',
     'header.language': 'Language',
@@ -203,7 +203,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
   ar: {
     // Brand & Header
     'brand.name': 'أندازة ديكورات',
-    'brand.tagline': 'معرض الديكور الداخلي والمعماري الفاخر',
+    'brand.tagline': 'فخامة الديكور',
     'header.shoppingBox': 'سلة المشتريات',
     'header.themeToggle': 'تغيير وضع المظهر',
     'header.language': 'اللغة',
@@ -316,7 +316,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
     'prod.fakhama-travertine-sconce.name': 'زوج إضاءة جدارية لومينا ترافرتين',
     'prod.fakhama-travertine-sconce.short': 'إضاءة جدارية مزدوجة الاتجاه منحوتة من حجر الترافرتين الطبيعي الناعم.',
-    'prod.fakhama-travertine-sconce.full': 'تضفي هالة إضاءة دافئة ناعمة للأعلى والأسفل تبرز جمال الجدران والمساحات الداخلية.',
+    'prod.fakhama-travertine-sconce.full': 'تضفي هالة إضاءة دافئة ناعمة للأعلى والأسفل تبرز جمال الواجهات والجدران الخارجية والمعمارية.',
 
     'prod.fakhama-marble-bowl.name': 'وعاء رخام كالاكاتا المنحوت الفاخر',
     'prod.fakhama-marble-bowl.short': 'وعاء ديكور منحوت من قطعة واحدة صلبة من رخام كالاكاتا الإيطالي بعروق ذهبية.',
@@ -358,7 +358,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
   ku: {
     // Brand & Header
     'brand.name': 'ئەندازە دیکۆرات',
-    'brand.tagline': 'پێشانگای ناوازەی دیکۆرات و دیزاینی ناوخۆیی',
+    'brand.tagline': 'دیکۆراتی خۆشگوزەرانی',
     'header.shoppingBox': 'سەبەتەی کڕین',
     'header.themeToggle': 'گۆڕینی دۆخی ڕەنگ',
     'header.language': 'زمان',
@@ -513,7 +513,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
   tr: {
     // Brand & Header
     'brand.name': 'ANDAZA DECORAT',
-    'brand.tagline': 'Lüks İç Mimari ve Tasarım Showroomu',
+    'brand.tagline': 'Lüks Dekorasyon',
     'header.shoppingBox': 'Alışveriş Kutusu',
     'header.themeToggle': 'Tema modunu değiştir',
     'header.language': 'Dil',
@@ -626,7 +626,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
 
     'prod.fakhama-travertine-sconce.name': 'Lumina Honlanmış Traverten Aplik Çifti',
     'prod.fakhama-travertine-sconce.short': 'Doğal traverten taşından yontulmuş çift yönlü minimalist mimari duvar aplikleri.',
-    'prod.fakhama-travertine-sconce.full': 'İç mekan duvarlarında yukarı ve aşağı doğru yumuşak, sıcak bir ışık halesi oluşturur.',
+    'prod.fakhama-travertine-sconce.full': 'Dış cephe ve mimari duvarlarda yukarı ve aşağı doğru yumuşak, sıcak bir ışık halesi oluşturur.',
 
     'prod.fakhama-marble-bowl.name': 'Calacatta Mermer Oyma Meyve Kasesi',
     'prod.fakhama-marble-bowl.short': 'Tek parça masif Calacatta Gold mermer bloktan oyulmuş ağır ayaklı kase.',

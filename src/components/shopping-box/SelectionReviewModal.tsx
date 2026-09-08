@@ -257,7 +257,7 @@ export const SelectionReviewModal: React.FC = () => {
         {/* Document Ready Success View */}
         {generatedPdfBlobUrl && generatedDocNumber ? (
           <div className="space-y-4 sm:space-y-5 py-2 sm:py-3 animate-fade-in text-center px-4 sm:px-0">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center border border-emerald-500/30">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-sky-500/15 text-sky-600 dark:text-sky-400 mx-auto flex items-center justify-center border border-sky-500/30">
               <CheckCircle2 className="h-6 w-6 sm:h-7 sm:w-7" />
             </div>
 
@@ -268,7 +268,7 @@ export const SelectionReviewModal: React.FC = () => {
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                 Ref: <strong className="text-amber-600 dark:text-amber-400 font-mono">{generatedDocNumber}</strong> • Total: <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
               </p>
-              <p className="text-[11px] sm:text-xs text-emerald-600 dark:text-emerald-400/90 font-medium">
+              <p className="text-[11px] sm:text-xs text-sky-600 dark:text-sky-400/90 font-medium">
                 {t('review.directWhatsAppConfigured')} <span className="text-slate-900 dark:text-white font-bold">{BRAND_CONFIG.contact.phone}</span>
               </p>
             </div>
@@ -291,7 +291,7 @@ export const SelectionReviewModal: React.FC = () => {
                 <button
                   onClick={handleSendPDFToWhatsApp}
                   disabled={isSendingToWhatsApp}
-                  className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 border border-emerald-400/40 hover:shadow-[0_0_16px_rgba(16,185,129,0.4)] disabled:opacity-60 disabled:cursor-wait"
+                  className="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 text-white py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 border border-sky-400/40 hover:shadow-[0_0_16px_rgba(14,165,233,0.4)] disabled:opacity-60 disabled:cursor-wait"
                   title={t('review.sendToWhatsApp')}
                 >
                   {isSendingToWhatsApp ? (
@@ -314,7 +314,7 @@ export const SelectionReviewModal: React.FC = () => {
               <p className={`text-xs py-1.5 px-3 rounded-lg max-w-md mx-auto border ${
                 shareFeedbackError
                   ? 'text-amber-600 dark:text-amber-300 bg-amber-500/10 border-amber-500/20'
-                  : 'text-emerald-600 dark:text-emerald-300 bg-emerald-500/10 border-emerald-500/20'
+                  : 'text-sky-600 dark:text-sky-300 bg-sky-500/10 border-sky-500/20'
               }`}>
                 {shareFeedback}
               </p>
@@ -414,7 +414,7 @@ export const SelectionReviewModal: React.FC = () => {
                     <span
                       className={`absolute right-3 top-1/2 -translate-y-1/2 text-[10px] sm:text-[11px] font-mono pointer-events-none transition-colors select-none ${
                         (clientInfo.phone || '').length >= 10 && (clientInfo.phone || '').length <= 11
-                          ? 'text-emerald-500 font-bold'
+                          ? 'text-sky-500 font-bold'
                           : 'text-slate-400 dark:text-slate-500'
                       }`}
                     >
