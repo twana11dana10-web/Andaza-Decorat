@@ -23,62 +23,48 @@ if %errorlevel% neq 0 (
 echo [OK] Internet connection verified.
 echo.
 
-:: 3. Check if there are any changes
-set "HAS_CHANGES=0"
+:: 3. Check if there are any changes to commit or push
+set "HAS_UNCOMMITTED=0"
+set "HAS_UNPUSHED=0"
 
 git diff --quiet --exit-code 2>nul
-if %errorlevel% neq 0 set "HAS_CHANGES=1"
+if %errorlevel% neq 0 set "HAS_UNCOMMITTED=1"
 
 git diff --cached --quiet --exit-code 2>nul
-if %errorlevel% neq 0 set "HAS_CHANGES=1"
+if %errorlevel% neq 0 set "HAS_UNCOMMITTED=1"
 
-for /f %%i in ('git ls-files --others --exclude-standard 2^>nul') do set "HAS_CHANGES=1"
+for /f %%i in ('git ls-files --others --exclude-standard 2^>nul') do set "HAS_UNCOMMITTED=1"
 
-:: Also check if there are unpushed commits
-for /f %%i in ('git log origin/main..HEAD --oneline 2^>nul') do set "HAS_CHANGES=1"
+for /f %%i in ('git log origin/main..HEAD --oneline 2^>nul') do set "HAS_UNPUSHED=1"
 
-if "%HAS_CHANGES%"=="0" goto :NO_CHANGES
+if "%HAS_UNCOMMITTED%"=="0" if "%HAS_UNPUSHED%"=="0" goto :NO_CHANGES
 
-:: 4. Stage all changes (if any unstaged)
-git diff --quiet --exit-code 2>nul
-if %errorlevel% neq 0 (
+:: 4. Stage and commit if there are uncommitted changes
+if "%HAS_UNCOMMITTED%"=="1" (
     echo [STATUS] Staging all changes...
     git add .
     if %errorlevel% neq 0 goto :GIT_ERROR
     echo [OK] All changes staged.
     echo.
-)
 
-:: Check for untracked files
-for /f %%i in ('git ls-files --others --exclude-standard 2^>nul') do (
-    echo [STATUS] Staging new files...
-    git add .
-    echo [OK] New files staged.
-    echo.
-    goto :DO_COMMIT
-)
-
-:DO_COMMIT
-:: 5. Commit (only if there are staged changes)
-git diff --cached --quiet --exit-code 2>nul
-if %errorlevel% neq 0 (
+    echo [STATUS] Committing changes...
     git commit -m "Update project"
     if %errorlevel% neq 0 goto :GIT_ERROR
     echo [OK] Changes committed.
     echo.
 )
 
-:: 6. Ensure upstream is set and push
+:: 5. Push to remote
 echo [STATUS] Pushing to GitHub...
 echo (Please wait, this may take a moment on slow connections...)
 echo.
-git push --set-upstream origin main 2>&1
+git push origin main
 if %errorlevel% neq 0 (
     echo.
-    echo [RETRY] First push attempt failed. Retrying...
+    echo [RETRY] First push attempt failed. Retrying in 5 seconds...
     echo.
-    timeout /t 3 >nul
-    git push --set-upstream origin main 2>&1
+    timeout /t 5 >nul
+    git push origin main
     if %errorlevel% neq 0 goto :PUSH_FAIL
 )
 echo.
@@ -126,7 +112,7 @@ echo.
 echo [ERROR] Push to GitHub failed after 2 attempts.
 echo   - Make sure you have a stable internet connection
 echo   - Make sure you are logged in to GitHub
-echo   - Try running: git push --set-upstream origin main
+echo   - Try running manually: git push origin main
 echo.
 pause
 exit /b 1
