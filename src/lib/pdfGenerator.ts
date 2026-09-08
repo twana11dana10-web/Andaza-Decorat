@@ -96,7 +96,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
 
   // Sophisticated Color Palette
   const COLOR_DARK = [20, 26, 36] as const
-  const COLOR_BLUE = [14, 165, 233] as const
+  const COLOR_GOLD = [197, 160, 89] as const
   const COLOR_BORDER = [220, 226, 235] as const
   const COLOR_BG_LIGHT = [248, 250, 252] as const
   const COLOR_MUTED = [100, 116, 139] as const
@@ -113,7 +113,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
   // Header renderer
   const drawPageHeader = () => {
     // Top Accent Bar
-    doc.setFillColor(COLOR_BLUE[0], COLOR_BLUE[1], COLOR_BLUE[2])
+    doc.setFillColor(COLOR_GOLD[0], COLOR_GOLD[1], COLOR_GOLD[2])
     doc.rect(margin, 10, contentWidth, 1.2, 'F')
 
     // Brand Name
@@ -176,7 +176,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
 
   doc.setFont(fontFamily, 'bold')
   doc.setFontSize(8)
-  doc.setTextColor(COLOR_BLUE[0], COLOR_BLUE[1], COLOR_BLUE[2])
+  doc.setTextColor(COLOR_GOLD[0], COLOR_GOLD[1], COLOR_GOLD[2])
   doc.text('CUSTOMER & DELIVERY DETAILS', margin + 5, y + 6)
 
   // Customer Details Grid - Row 1: Name, Phone, Email
@@ -331,7 +331,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
 
     if (item.selectedOption) {
       doc.setFont(fontFamily, 'bold')
-      doc.setTextColor(COLOR_BLUE[0], COLOR_BLUE[1], COLOR_BLUE[2])
+      doc.setTextColor(COLOR_GOLD[0], COLOR_GOLD[1], COLOR_GOLD[2])
       doc.text(`Option: ${item.selectedOption.name}`, textX, y + 17.5)
     }
 
@@ -393,7 +393,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
 
   doc.setFont(fontFamily, 'bold')
   doc.setFontSize(7)
-  doc.setTextColor(COLOR_BLUE[0], COLOR_BLUE[1], COLOR_BLUE[2])
+  doc.setTextColor(COLOR_GOLD[0], COLOR_GOLD[1], COLOR_GOLD[2])
   doc.text('TOTAL AMOUNT IN DINAR', rightBoxX + rightBoxW / 2, y + 9, { align: 'center' })
 
   doc.setFont(fontFamily, 'bold')

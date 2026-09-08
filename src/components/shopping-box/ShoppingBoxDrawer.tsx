@@ -48,7 +48,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
         {/* Header with right padding for absolute close button */}
         <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3 sm:pb-4 pr-10 sm:pr-10 px-4 sm:px-0 pt-1 sm:pt-0 shrink-0">
           <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
-            <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-600 dark:text-sky-400 shrink-0">
+            <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
               <ShoppingCart className="h-4 w-4 sm:h-6 sm:w-6" />
             </div>
             <div className="min-w-0">
@@ -89,7 +89,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
                       setIsOpen(false)
                       setInspectedProduct(localizedProduct)
                     }}
-                    className="w-13 h-13 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#070a0f] border border-slate-200 dark:border-slate-800 cursor-pointer shrink-0 flex items-center justify-center overflow-hidden hover:border-sky-500/40 transition-colors"
+                    className="w-13 h-13 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#070a0f] border border-slate-200 dark:border-slate-800 cursor-pointer shrink-0 flex items-center justify-center overflow-hidden hover:border-amber-500/40 transition-colors"
                   >
                     <img
                       src={productImage(localizedProduct.mainImage, 200)}
@@ -102,7 +102,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
                   {/* Info */}
                   <div className="flex-1 min-w-0 space-y-0.5 sm:space-y-1 text-left">
                     <div className="flex items-center justify-between gap-1.5 sm:gap-2">
-                      <span className="text-[9px] sm:text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider truncate">
+                      <span className="text-[9px] sm:text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider truncate">
                         {localizedProduct.brand || localizedProduct.code}
                       </span>
                       <button
@@ -119,7 +119,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
                         setIsOpen(false)
                         setInspectedProduct(localizedProduct)
                       }}
-                      className="text-[11px] sm:text-[15px] font-semibold text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors truncate cursor-pointer leading-tight"
+                      className="text-[11px] sm:text-[15px] font-semibold text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors truncate cursor-pointer leading-tight"
                     >
                       {localizedProduct.name}
                     </h4>
@@ -175,7 +175,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
               {/* Single Consolidated Action Button */}
               <button
                 onClick={handleOpenReview}
-                className="w-full py-2.5 sm:py-3.5 px-4 sm:px-5 bg-sky-500 hover:bg-sky-400 text-white rounded-xl text-[11px] sm:text-sm uppercase tracking-wider font-bold transition-all cursor-pointer shadow-md hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] flex items-center justify-center gap-1.5 sm:gap-2 active:scale-98"
+                className="w-full py-2.5 sm:py-3.5 px-4 sm:px-5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl text-[11px] sm:text-sm uppercase tracking-wider font-bold transition-all cursor-pointer shadow-md hover:shadow-[0_0_20px_rgba(245,158,11,0.45)] flex items-center justify-center gap-1.5 sm:gap-2 active:scale-98"
               >
                 <FileText className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
                 <span>{t('drawer.sendInvoiceSheet')}</span>

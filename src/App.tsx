@@ -16,7 +16,7 @@ export default function App() {
       <LanguageProvider>
         <ShowroomProvider>
           <ShoppingBoxProvider>
-            <div className="min-h-screen relative flex flex-col bg-[#f8f7f4] dark:bg-[#0c1017] text-slate-900 dark:text-slate-100 selection:bg-sky-500/20 selection:text-sky-900 dark:selection:text-white font-sans transition-colors duration-300">
+            <div className="min-h-screen relative flex flex-col bg-[#f8f7f4] dark:bg-[#0c1017] text-slate-900 dark:text-slate-100 selection:bg-amber-500/25 selection:text-amber-950 dark:selection:text-amber-200 font-sans transition-colors duration-300">
               {/* Ambient Background Dots & Micro-Grid */}
               <BackgroundDots />
               

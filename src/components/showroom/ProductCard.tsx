@@ -79,7 +79,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         "border transition-all",
         isInCart
           ? "border-emerald-500 dark:border-emerald-400 ring-2 ring-emerald-400/60 dark:ring-emerald-400/70 shadow-[0_6px_22px_rgba(0,0,0,0.08),0_0_26px_rgba(16,185,129,0.36),0_0_40px_rgba(52,211,153,0.18)] dark:shadow-[0_8px_28px_rgba(0,0,0,0.7),0_0_30px_rgba(52,211,153,0.42),0_0_50px_rgba(16,185,129,0.2)]"
-          : "border-slate-200/90 dark:border-slate-800/90 hover:border-sky-400 dark:hover:border-sky-400 shadow-[0_4px_16px_rgba(0,0,0,0.05),0_0_16px_rgba(56,189,248,0.12)] dark:shadow-[0_6px_24px_rgba(0,0,0,0.6),0_0_20px_rgba(56,189,248,0.18)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.12),0_0_30px_rgba(56,189,248,0.42),0_0_55px_rgba(56,189,248,0.18)] dark:hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_35px_rgba(56,189,248,0.52),0_0_65px_rgba(56,189,248,0.24)]",
+          : "border-slate-200/90 dark:border-slate-800/90 hover:border-amber-400 dark:hover:border-amber-400 shadow-[0_4px_16px_rgba(0,0,0,0.05),0_0_16px_rgba(217,170,75,0.12)] dark:shadow-[0_6px_24px_rgba(0,0,0,0.6),0_0_20px_rgba(217,170,75,0.18)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.12),0_0_30px_rgba(217,170,75,0.42),0_0_55px_rgba(217,170,75,0.18)] dark:hover:shadow-[0_16px_36px_rgba(0,0,0,0.8),0_0_35px_rgba(217,170,75,0.52),0_0_65px_rgba(217,170,75,0.24)]",
         className
       )}
     >
@@ -89,7 +89,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           "absolute -top-12 -right-12 w-36 h-36 rounded-full blur-2xl pointer-events-none transition-all duration-500",
           isInCart
             ? "bg-emerald-400/25 dark:bg-emerald-400/30 opacity-90 scale-110"
-            : "bg-sky-400/20 dark:bg-sky-400/25 opacity-40 group-hover:opacity-100 group-hover:scale-125"
+            : "bg-amber-400/20 dark:bg-amber-400/25 opacity-40 group-hover:opacity-100 group-hover:scale-125"
         )}
       />
       <div
@@ -97,7 +97,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           "absolute -bottom-10 -left-10 w-28 h-28 rounded-full blur-xl pointer-events-none transition-opacity duration-500",
           isInCart
             ? "bg-emerald-500/15 dark:bg-emerald-600/20 opacity-80"
-            : "bg-sky-500/10 dark:bg-sky-600/15 opacity-0 group-hover:opacity-100"
+            : "bg-amber-500/10 dark:bg-amber-600/15 opacity-0 group-hover:opacity-100"
         )}
       />
 
@@ -107,7 +107,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           "relative aspect-square w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1.5 sm:mb-3.5 transition-colors shadow-inner",
           isInCart
             ? "border-emerald-400/50 dark:border-emerald-400/40"
-            : "border-slate-200 dark:border-slate-800/70 group-hover:border-sky-400/40 dark:group-hover:border-sky-400/30"
+            : "border-slate-200 dark:border-slate-800/70 group-hover:border-amber-400/40 dark:group-hover:border-amber-400/30"
         )}
       >
         <img
@@ -130,7 +130,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               "font-sans font-semibold text-xs sm:text-[15px] transition-colors leading-snug line-clamp-2 min-h-[2.1rem] sm:min-h-[2.6rem]",
               isInCart
                 ? "text-emerald-700 dark:text-emerald-300"
-                : "text-slate-900 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-300"
+                : "text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300"
             )}
           >
             {product.name}
@@ -175,7 +175,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ) : (
             <button
               onClick={handleQuickAdd}
-              className="inline-flex items-center gap-0.5 sm:gap-1.5 px-2 min-[360px]:px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-[10px] min-[360px]:text-[11px] sm:text-[13px] tracking-wider uppercase bg-sky-500 hover:bg-sky-400 text-white border border-sky-400/40 hover:shadow-[0_0_15px_rgba(56,189,248,0.45)] transition-all duration-200 cursor-pointer shadow-sm active:scale-95 shrink-0"
+              className="inline-flex items-center gap-0.5 sm:gap-1.5 px-2 min-[360px]:px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-[10px] min-[360px]:text-[11px] sm:text-[13px] tracking-wider uppercase bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-400/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.45)] transition-all duration-200 cursor-pointer shadow-sm active:scale-95 shrink-0"
               title={t('card.add')}
               aria-label={`${t('card.add')} ${product.name}`}
             >

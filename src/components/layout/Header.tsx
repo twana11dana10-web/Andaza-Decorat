@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
               "relative inline-flex items-center justify-center gap-1 sm:gap-2.5 h-8 sm:h-10 px-2 sm:px-4 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold backdrop-blur-md transition-all duration-300 cursor-pointer group select-none active:scale-95 shrink-0",
               hasItems
                 ? "bg-emerald-50/95 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-100 border border-emerald-500/70 dark:border-emerald-400/60 shadow-[0_0_16px_rgba(16,185,129,0.35)] hover:border-emerald-400 dark:hover:border-emerald-300 hover:shadow-[0_0_24px_rgba(16,185,129,0.55),0_0_40px_rgba(52,211,153,0.3)] hover:ring-2 hover:ring-emerald-400/50 animate-heartbeat-continuous"
-                : "bg-white/90 dark:bg-[#131823] hover:bg-slate-50 dark:hover:bg-[#161e2e] text-slate-900 dark:text-white border border-slate-200/90 dark:border-slate-800/90 hover:border-sky-400 dark:hover:border-sky-400 shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.4)] hover:shadow-[0_0_20px_rgba(56,189,248,0.45),0_0_35px_rgba(56,189,248,0.22)] dark:hover:shadow-[0_0_22px_rgba(56,189,248,0.5),0_0_40px_rgba(56,189,248,0.25)] hover:ring-2 hover:ring-sky-400/40"
+                : "bg-white/90 dark:bg-[#131823] hover:bg-slate-50 dark:hover:bg-[#161e2e] text-slate-900 dark:text-white border border-slate-200/90 dark:border-slate-800/90 hover:border-amber-400 dark:hover:border-amber-400 shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.4)] hover:shadow-[0_0_20px_rgba(217,170,75,0.45),0_0_35px_rgba(217,170,75,0.22)] dark:hover:shadow-[0_0_22px_rgba(217,170,75,0.5),0_0_40px_rgba(217,170,75,0.25)] hover:ring-2 hover:ring-amber-400/40"
             )}
             aria-label={`${t('header.shoppingBox')}: ${totalSelectedCount}`}
           >
@@ -66,7 +66,7 @@ export const Header: React.FC = () => {
                   "h-3.5 w-3.5 sm:h-4.5 sm:w-4.5 transition-all duration-200 group-hover:scale-110",
                   hasItems
                     ? "text-emerald-600 dark:text-emerald-400 stroke-[2.2]"
-                    : "text-sky-600 dark:text-sky-400"
+                    : "text-amber-600 dark:text-amber-400"
                 )}
               />
             </div>

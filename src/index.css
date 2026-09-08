@@ -301,23 +301,23 @@
 @keyframes continuous-heartbeat {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.18);
+    box-shadow: 0 0 10px rgba(217, 170, 75, 0.22);
   }
   25% {
     transform: scale(1.02);
-    box-shadow: 0 0 18px rgba(56, 189, 248, 0.36);
+    box-shadow: 0 0 18px rgba(217, 170, 75, 0.42);
   }
   50% {
     transform: scale(0.994);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.18);
+    box-shadow: 0 0 10px rgba(217, 170, 75, 0.22);
   }
   75% {
     transform: scale(1.014);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.28);
+    box-shadow: 0 0 15px rgba(217, 170, 75, 0.32);
   }
   100% {
     transform: scale(1);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.18);
+    box-shadow: 0 0 10px rgba(217, 170, 75, 0.22);
   }
 }
 

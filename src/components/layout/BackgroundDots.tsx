@@ -23,13 +23,13 @@ export const BackgroundDots: React.FC = () => {
       const left = ((i * 23 + 11) % 100)
       const size = (i % 3 === 0 ? 3 : i % 2 === 0 ? 2.5 : 2)
       const opacity = 0.35 + ((i % 4) * 0.15) // Brighter opacity (0.35 to 0.8)
-      const isSky = i % 2 === 0
-      const color = isSky 
-        ? `rgba(56, 189, 248, ${opacity})` 
-        : `rgba(224, 242, 254, ${opacity})`
-      const glowColor = isSky 
-        ? `rgba(56, 189, 248, 0.65)` 
-        : `rgba(255, 255, 255, 0.5)`
+      const isGold = i % 2 === 0
+      const color = isGold 
+        ? `rgba(217, 170, 75, ${opacity})` 
+        : `rgba(245, 220, 160, ${opacity * 0.7})`
+      const glowColor = isGold 
+        ? `rgba(217, 170, 75, 0.65)` 
+        : `rgba(255, 235, 180, 0.5)`
       const duration = 4 + (i % 4) * 1.5
       const delay = (i % 6) * 0.9
 
@@ -60,7 +60,7 @@ export const BackgroundDots: React.FC = () => {
       />
 
       {/* 2. Soft Ambient Vignette */}
-      <div className="absolute inset-0 bg-radial-[circle_at_50%_0%] from-sky-500/5 dark:from-sky-950/25 via-transparent to-transparent dark:to-[#0c1017]/85" />
+      <div className="absolute inset-0 bg-radial-[circle_at_50%_0%] from-amber-500/5 dark:from-amber-950/20 via-transparent to-transparent dark:to-[#0c1017]/85" />
 
       {/* 3. Scattered Ambient Glowing Floating Dots */}
       {dots.map(dot => (

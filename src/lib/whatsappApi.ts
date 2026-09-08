@@ -56,7 +56,7 @@ export async function sendPdfDocumentToWhatsApp(
     docNumber,
     clientName,
     clientPhone,
-    showroomPhone = BRAND_CONFIG.contact.phone || '07517447522',
+    showroomPhone = BRAND_CONFIG.contact.phone || '07782913892',
     caption,
   } = options
 

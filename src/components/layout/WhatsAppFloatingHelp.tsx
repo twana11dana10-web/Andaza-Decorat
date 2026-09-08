@@ -21,7 +21,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
             {t('brand.tagline')}
           </p>
           <div className="flex flex-wrap items-center justify-center sm:justify-start rtl:sm:justify-end gap-x-1.5 sm:gap-x-2 gap-y-0.5 text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500">
-            <span>© 2026 Fakhama Decorat.</span>
+            <span>© 2026 ANDAZA DECORAT.</span>
             <span>•</span>
             <span>All rights reserved.</span>
             <span>•</span>
@@ -38,8 +38,8 @@ export const WhatsAppFloatingHelp: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center px-3 sm:px-3.5 py-2.5 sm:py-2.5 rounded-xl bg-white dark:bg-[#131823] hover:bg-slate-100 dark:hover:bg-[#1b2333] text-slate-800 dark:text-slate-100 hover:text-rose-500 dark:hover:text-rose-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500/50 shadow-sm hover:shadow-[0_0_20px_rgba(244,63,94,0.25)] transition-all duration-300 cursor-pointer active:scale-95 shrink-0"
-            title="Follow Fakhama Decorat on TikTok"
-            aria-label="Follow Fakhama Decorat on TikTok"
+            title={`Follow ${BRAND_CONFIG.name} on TikTok`}
+            aria-label={`Follow ${BRAND_CONFIG.name} on TikTok`}
           >
             <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-rose-500/10 dark:bg-rose-500/15 border border-rose-500/20 flex items-center justify-center text-slate-900 dark:text-white group-hover:scale-110 group-hover:bg-rose-500/25 transition-all duration-300 shadow-xs">
               <svg

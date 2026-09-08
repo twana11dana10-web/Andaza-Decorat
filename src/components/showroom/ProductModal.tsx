@@ -165,7 +165,7 @@ export const ProductModal: React.FC = () => {
                     className={cn(
                       "relative w-12 h-12 sm:w-18 sm:h-18 rounded-lg sm:rounded-xl overflow-hidden border transition-all cursor-pointer shrink-0",
                       activeImageIndex === idx
-                        ? "ring-2 ring-sky-500 border-sky-500 shadow-sm"
+                        ? "ring-2 ring-amber-500 border-amber-500 shadow-sm"
                         : "border-slate-200 dark:border-slate-800 opacity-60 hover:opacity-100"
                     )}
                   >
@@ -181,7 +181,7 @@ export const ProductModal: React.FC = () => {
             
             <div className="space-y-2 sm:space-y-3">
               {/* Brand Name */}
-              <p className="text-[11px] sm:text-xs font-bold text-sky-600 dark:text-sky-400 tracking-widest uppercase">
+              <p className="text-[11px] sm:text-xs font-bold text-amber-600 dark:text-amber-400 tracking-widest uppercase">
                 {inspectedProduct.brand || BRAND_CONFIG.name}
               </p>
 
@@ -239,7 +239,7 @@ export const ProductModal: React.FC = () => {
                     "flex-1 py-2.5 sm:py-3 px-3 sm:px-5 rounded-xl text-xs sm:text-sm uppercase tracking-wider font-bold transition-all cursor-pointer shadow-md flex items-center justify-center gap-1.5 sm:gap-2 active:scale-98 text-center",
                     isSelected
                       ? "bg-rose-500/15 hover:bg-rose-500/25 dark:bg-rose-500/20 dark:hover:bg-rose-500/30 text-rose-600 dark:text-rose-300 border border-rose-500/50 hover:border-rose-400"
-                      : "bg-sky-500 hover:bg-sky-400 text-white border border-sky-400/40 hover:shadow-[0_0_15px_rgba(56,189,248,0.4)]"
+                      : "bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold border border-amber-400/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
                   )}
                 >
                   {isSelected ? (

@@ -175,9 +175,9 @@ export const SelectionReviewModal: React.FC = () => {
     document.body.removeChild(a)
   }
 
-  // Opens a WhatsApp chat with the showroom owner (07517447522 -> 9647517447522)
+  // Opens a WhatsApp chat with the showroom owner (07782913892 -> 9647782913892)
   const openShowroomWhatsAppChat = (message?: string) => {
-    const rawPhone = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07517447522'
+    const rawPhone = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07782913892'
     const cleanPhone = rawPhone.replace(/[^0-9]/g, '')
     const formattedShowroomPhone = cleanPhone.startsWith('0')
       ? '964' + cleanPhone.slice(1)
@@ -192,7 +192,7 @@ export const SelectionReviewModal: React.FC = () => {
   }
 
   /**
-   * 3-tier PDF delivery to WhatsApp (07517447522):
+   * 3-tier PDF delivery to WhatsApp (07782913892):
    * 1. WhatsApp Gateway API (UltraMsg/Green-API) — fully automatic native PDF, desktop + mobile.
    * 2. Web Share API — share sheet opens with the PDF attached, user picks WhatsApp + contact.
    * 3. Fallback — download the PDF + open wa.me chat, user attaches manually.
@@ -266,7 +266,7 @@ export const SelectionReviewModal: React.FC = () => {
                 {t('review.docReadyTitle')}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                Ref: <strong className="text-sky-600 dark:text-sky-400 font-mono">{generatedDocNumber}</strong> • Total: <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
+                Ref: <strong className="text-amber-600 dark:text-amber-400 font-mono">{generatedDocNumber}</strong> • Total: <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
               </p>
               <p className="text-[11px] sm:text-xs text-emerald-600 dark:text-emerald-400/90 font-medium">
                 {t('review.directWhatsAppConfigured')} <span className="text-slate-900 dark:text-white font-bold">{BRAND_CONFIG.contact.phone}</span>
@@ -279,7 +279,7 @@ export const SelectionReviewModal: React.FC = () => {
                 {/* 1. Combined Download & Open Invoice */}
                 <button
                   onClick={handleDownloadAndOpenInvoice}
-                  className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-white py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 hover:shadow-[0_0_16px_rgba(56,189,248,0.4)]"
+                  className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 hover:shadow-[0_0_16px_rgba(245,158,11,0.45)]"
                   title={t('review.downloadAndOpen')}
                 >
                   <Download className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
@@ -363,7 +363,7 @@ export const SelectionReviewModal: React.FC = () => {
                 {/* Full Name */}
                 <div>
                   <label className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-2">
-                    <User className="h-4 w-4 text-sky-600 dark:text-sky-400 shrink-0" />
+                    <User className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
                     <span>{t('review.fullName')} {t('common.required')}</span>
                   </label>
                   <input
@@ -374,14 +374,14 @@ export const SelectionReviewModal: React.FC = () => {
                     onChange={(e) =>
                       setClientInfo(prev => ({ ...prev, clientName: e.target.value }))
                     }
-                    className="w-full bg-slate-50 dark:bg-[#141a26] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-sky-500 transition-all"
+                    className="w-full bg-slate-50 dark:bg-[#141a26] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-amber-500 transition-all"
                   />
                 </div>
 
                 {/* Phone Number with 10 or 11 digits enforcement */}
                 <div>
                   <label className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-sky-600 dark:text-sky-400 shrink-0" />
+                    <Phone className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
                     <span>{t('review.phone')} {t('common.required')}</span>
                   </label>
                   <div className="relative">
@@ -408,7 +408,7 @@ export const SelectionReviewModal: React.FC = () => {
                       className={`w-full bg-slate-50 dark:bg-[#141a26] border rounded-xl pl-3.5 pr-14 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none transition-all ${
                         phoneError
                           ? 'border-red-500 focus:border-red-500 ring-1 ring-red-500/30'
-                          : 'border-slate-200 dark:border-slate-800 focus:border-sky-500'
+                          : 'border-slate-200 dark:border-slate-800 focus:border-amber-500'
                       }`}
                     />
                     <span
@@ -443,7 +443,7 @@ export const SelectionReviewModal: React.FC = () => {
                   onChange={(e) =>
                     setClientInfo(prev => ({ ...prev, address: e.target.value, city: e.target.value }))
                   }
-                  className="w-full bg-slate-50 dark:bg-[#141a26] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-sky-500 transition-all"
+                  className="w-full bg-slate-50 dark:bg-[#141a26] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-amber-500 transition-all"
                 />
               </div>
 
@@ -459,7 +459,7 @@ export const SelectionReviewModal: React.FC = () => {
                   onChange={(e) =>
                     setClientInfo(prev => ({ ...prev, notes: e.target.value }))
                   }
-                  className="w-full bg-slate-50 dark:bg-[#141a26] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-sky-500 transition-all resize-none"
+                  className="w-full bg-slate-50 dark:bg-[#141a26] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-amber-500 transition-all resize-none"
                 />
               </div>
 
@@ -471,7 +471,7 @@ export const SelectionReviewModal: React.FC = () => {
                 <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 block uppercase font-medium">
                   {totalCount} {totalCount === 1 ? t('review.productOrdered') : t('review.productsOrdered')}
                 </span>
-                <span className="text-xs sm:text-sm text-sky-600 dark:text-sky-300">
+                <span className="text-xs sm:text-sm text-amber-600 dark:text-amber-300">
                   {t('review.readyToSend')}
                 </span>
               </div>
@@ -494,7 +494,7 @@ export const SelectionReviewModal: React.FC = () => {
               <button
                 type="submit"
                 disabled={isGenerating}
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-98 cursor-pointer disabled:opacity-60"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-98 cursor-pointer disabled:opacity-60 hover:shadow-[0_0_20px_rgba(245,158,11,0.45)]"
               >
                 {isGenerating ? (
                   <>

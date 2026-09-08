@@ -43,7 +43,7 @@ export const ProductCatalog: React.FC = () => {
         ) : (
           /* Clean Empty State */
           <div className="py-16 px-6 text-center bg-white dark:bg-[#131823] border border-slate-200 dark:border-slate-800 rounded-2xl max-w-sm mx-auto space-y-3.5 shadow-lg my-10">
-            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center mx-auto">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto">
               <PackageOpen className="h-5 w-5" />
             </div>
 
@@ -56,7 +56,7 @@ export const ProductCatalog: React.FC = () => {
 
             <button
               onClick={resetAllFilters}
-              className="inline-flex items-center gap-1.5 bg-sky-500 hover:bg-sky-400 text-white text-xs font-semibold px-4 py-2 rounded-xl cursor-pointer transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs px-4 py-2 rounded-xl cursor-pointer transition-all shadow-md active:scale-95"
             >
               <RotateCcw className="h-3 w-3" />
               <span>{t('catalog.resetAll')}</span>
