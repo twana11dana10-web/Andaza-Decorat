@@ -175,7 +175,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
               {/* Single Consolidated Action Button */}
               <button
                 onClick={handleOpenReview}
-                className="w-full py-2.5 sm:py-3.5 px-4 sm:px-5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl text-[11px] sm:text-sm uppercase tracking-wider font-bold transition-all cursor-pointer shadow-md hover:shadow-[0_0_20px_rgba(245,158,11,0.45)] flex items-center justify-center gap-1.5 sm:gap-2 active:scale-98"
+                className="w-full py-2.5 sm:py-3.5 px-4 sm:px-5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl text-[11px] sm:text-sm uppercase tracking-wider font-bold transition-all cursor-pointer shadow-md hover:shadow-[0_0_20px_rgba(197,160,89,0.45)] flex items-center justify-center gap-1.5 sm:gap-2 active:scale-98"
               >
                 <FileText className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5" />
                 <span>{t('drawer.sendInvoiceSheet')}</span>

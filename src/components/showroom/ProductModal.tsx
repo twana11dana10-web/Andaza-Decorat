@@ -198,9 +198,11 @@ export const ProductModal: React.FC = () => {
               </div>
 
               {/* Description */}
-              <p className="text-xs sm:text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">
-                {inspectedProduct.fullDescription || inspectedProduct.shortDescription}
-              </p>
+              {Boolean(inspectedProduct.fullDescription || inspectedProduct.shortDescription) && (
+                <p className="text-xs sm:text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {inspectedProduct.fullDescription || inspectedProduct.shortDescription}
+                </p>
+              )}
 
               {/* Specifications: Clean List Layout */}
               {inspectedProduct.specifications && inspectedProduct.specifications.length > 0 && (
@@ -239,7 +241,7 @@ export const ProductModal: React.FC = () => {
                     "flex-1 py-2.5 sm:py-3 px-3 sm:px-5 rounded-xl text-xs sm:text-sm uppercase tracking-wider font-bold transition-all cursor-pointer shadow-md flex items-center justify-center gap-1.5 sm:gap-2 active:scale-98 text-center",
                     isSelected
                       ? "bg-rose-500/15 hover:bg-rose-500/25 dark:bg-rose-500/20 dark:hover:bg-rose-500/30 text-rose-600 dark:text-rose-300 border border-rose-500/50 hover:border-rose-400"
-                      : "bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold border border-amber-400/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                      : "bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold border border-amber-400/40 hover:shadow-[0_0_15px_rgba(197,160,89,0.45)]"
                   )}
                 >
                   {isSelected ? (

@@ -279,7 +279,7 @@ export const SelectionReviewModal: React.FC = () => {
                 {/* 1. Combined Download & Open Invoice */}
                 <button
                   onClick={handleDownloadAndOpenInvoice}
-                  className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 hover:shadow-[0_0_16px_rgba(245,158,11,0.45)]"
+                  className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 hover:shadow-[0_0_16px_rgba(197,160,89,0.45)]"
                   title={t('review.downloadAndOpen')}
                 >
                   <Download className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
@@ -494,7 +494,7 @@ export const SelectionReviewModal: React.FC = () => {
               <button
                 type="submit"
                 disabled={isGenerating}
-                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-98 cursor-pointer disabled:opacity-60 hover:shadow-[0_0_20px_rgba(245,158,11,0.45)]"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-98 cursor-pointer disabled:opacity-60 hover:shadow-[0_0_20px_rgba(197,160,89,0.45)]"
               >
                 {isGenerating ? (
                   <>

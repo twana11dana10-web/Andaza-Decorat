@@ -21,7 +21,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
             {t('brand.tagline')}
           </p>
           <div className="flex flex-wrap items-center justify-center sm:justify-start rtl:sm:justify-end gap-x-1.5 sm:gap-x-2 gap-y-0.5 text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500">
-            <span>© 2026 ANDAZA DECORAT.</span>
+            <span>© 2026 Andaza Decorat.</span>
             <span>•</span>
             <span>All rights reserved.</span>
             <span>•</span>

@@ -19,8 +19,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className }) => {
       className={cn(
         "relative flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl border transition-all duration-200 cursor-pointer active:scale-90 shadow-sm shrink-0",
         isDark
-          ? "bg-[#141a26] hover:bg-[#1a2233] border-slate-700/80 hover:border-amber-400 text-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.35)]"
-          : "bg-slate-100 hover:bg-slate-200/90 border-slate-300 hover:border-amber-500 text-amber-600 hover:shadow-[0_0_15px_rgba(245,158,11,0.35)]",
+          ? "bg-[#141a26] hover:bg-[#1a2233] border-slate-700/80 hover:border-amber-400 text-amber-400 hover:shadow-[0_0_15px_rgba(197,160,89,0.4)]"
+          : "bg-slate-100 hover:bg-slate-200/90 border-slate-300 hover:border-amber-500 text-amber-600 hover:shadow-[0_0_15px_rgba(197,160,89,0.4)]",
         className
       )}
       title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}

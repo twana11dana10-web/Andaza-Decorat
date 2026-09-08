@@ -79,14 +79,27 @@ export default {
           burnished: '#A37F3C',       // Burnished Bronze Hover
           goldLight: '#E8D49E',       // Luminescent Gold Highlight
         },
+        amber: {
+          50: '#FBF9F5',
+          100: '#F6F0E4',
+          200: '#ECE0CB',
+          300: '#E0CB9E',
+          400: '#D5B46E', // Crisp architectural logo gold highlight
+          500: '#C5A059', // Signature exact logo champagne brushed gold
+          600: '#A88038', // Deep refined logo gold for high-contrast text and borders
+          700: '#8A6729',
+          800: '#6C4F1E',
+          900: '#4D3613',
+          950: '#2A1D08',
+        },
         brand: {
           50: '#FDFBF7',
           100: '#FAF4EB',
           200: '#F3E8D3',
           300: '#E9D5B0',
-          400: '#DCBD85',
+          400: '#D5B46E',
           500: '#C5A059', // Signature Champagne Brushed Gold
-          600: '#A37F3C',
+          600: '#A88038',
           700: '#82622C',
           800: '#644A20',
           900: '#463316',

@@ -26,8 +26,10 @@ export const ProductCatalog: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: shouldReduceMotion ? 0.01 : 0.25 }}
             className={cn(
-              "grid gap-2 sm:gap-5 lg:gap-6",
-              gridDensity === '5-col'
+              "grid gap-3 sm:gap-6 lg:gap-8",
+              filteredProducts.length <= 2
+                ? "grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto"
+                : gridDensity === '5-col'
                 ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5"
                 : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4"
             )}

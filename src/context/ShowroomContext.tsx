@@ -1,6 +1,7 @@
-﻿import React, { createContext, useContext, useState, useMemo } from 'react'
+import React, { createContext, useContext, useState, useMemo } from 'react'
 import { Product, ProductCategory } from '../types/product'
 import { SHOWROOM_PRODUCTS } from '../data/products'
+import { TRANSLATIONS, Language } from '../data/translations'
 
 export type GridDensity = '5-col' | '4-col'
 
@@ -33,6 +34,7 @@ export const ShowroomProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }
 
   const filteredProducts = useMemo(() => {
+    const langs: Language[] = ['en', 'ar', 'ku', 'tr']
     return SHOWROOM_PRODUCTS.filter(product => {
       if (selectedCategory !== 'all' && selectedCategory !== 'more') {
         if (product.category !== selectedCategory) return false
@@ -42,7 +44,12 @@ export const ShowroomProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const matchesName = product.name.toLowerCase().includes(query)
         const matchesBrand = product.brand?.toLowerCase().includes(query) || false
         const matchesCode = product.code.toLowerCase().includes(query)
-        if (!matchesName && !matchesBrand && !matchesCode) {
+        const matchesLocalized = langs.some(lang => {
+          const locName = TRANSLATIONS[lang]?.[`prod.${product.id}.name`]?.toLowerCase()
+          return locName && locName.includes(query)
+        })
+
+        if (!matchesName && !matchesBrand && !matchesCode && !matchesLocalized) {
           return false
         }
       }

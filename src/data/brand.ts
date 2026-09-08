@@ -1,6 +1,6 @@
 export const BRAND_CONFIG = {
   name: "ANDAZA DECORAT",
-  tagline: "Luxury Exterior Decoration",
+  tagline: "Luxury Decoration is here",
   currency: "IQD",
   subtitle: "A digital showroom dedicated to luxury exterior decorations, facade architectural design, and premium cladding for houses and towers.",
   showroomAddress: "742 Al-Andalus Boulevard, Design District, Riyadh, KSA",

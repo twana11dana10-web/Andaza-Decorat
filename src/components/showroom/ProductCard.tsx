@@ -175,7 +175,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ) : (
             <button
               onClick={handleQuickAdd}
-              className="inline-flex items-center gap-0.5 sm:gap-1.5 px-2 min-[360px]:px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-[10px] min-[360px]:text-[11px] sm:text-[13px] tracking-wider uppercase bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-400/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.45)] transition-all duration-200 cursor-pointer shadow-sm active:scale-95 shrink-0"
+              className="inline-flex items-center gap-0.5 sm:gap-1.5 px-2 min-[360px]:px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-[10px] min-[360px]:text-[11px] sm:text-[13px] tracking-wider uppercase bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-400/40 hover:shadow-[0_0_15px_rgba(197,160,89,0.45)] transition-all duration-200 cursor-pointer shadow-sm active:scale-95 shrink-0"
               title={t('card.add')}
               aria-label={`${t('card.add')} ${product.name}`}
             >
