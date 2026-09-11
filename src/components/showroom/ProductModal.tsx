@@ -123,7 +123,7 @@ export const ProductModal: React.FC = () => {
               <img
                 src={activeImage}
                 alt={`${inspectedProduct.name} - View ${activeImageIndex + 1}`}
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 dark:from-[#0c1017]/50 via-transparent to-transparent pointer-events-none" />
 

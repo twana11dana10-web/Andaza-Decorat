@@ -137,6 +137,12 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'prod.mechanical-porcelain.name': 'Mechanical Porcelain',
     'prod.mechanical-porcelain.short': '',
     'prod.mechanical-porcelain.full': '',
+    'prod.panoramic-sliding-glass.name': 'Glass',
+    'prod.panoramic-sliding-glass.short': '',
+    'prod.panoramic-sliding-glass.full': '',
+    'prod.architectural-glass-doors.name': 'Aluminum',
+    'prod.architectural-glass-doors.short': '',
+    'prod.architectural-glass-doors.full': '',
   },
   ar: {
     // Brand & Header
@@ -230,6 +236,12 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'prod.mechanical-porcelain.name': 'بورسلين ميكانيكي',
     'prod.mechanical-porcelain.short': '',
     'prod.mechanical-porcelain.full': '',
+    'prod.panoramic-sliding-glass.name': 'زجاج',
+    'prod.panoramic-sliding-glass.short': '',
+    'prod.panoramic-sliding-glass.full': '',
+    'prod.architectural-glass-doors.name': 'ألمنيوم',
+    'prod.architectural-glass-doors.short': '',
+    'prod.architectural-glass-doors.full': '',
   },
   ku: {
     // Brand & Header
@@ -323,6 +335,12 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'prod.mechanical-porcelain.name': 'پۆرسەلینی میکانیکی',
     'prod.mechanical-porcelain.short': '',
     'prod.mechanical-porcelain.full': '',
+    'prod.panoramic-sliding-glass.name': 'جام',
+    'prod.panoramic-sliding-glass.short': '',
+    'prod.panoramic-sliding-glass.full': '',
+    'prod.architectural-glass-doors.name': 'ئەلەمینۆم',
+    'prod.architectural-glass-doors.short': '',
+    'prod.architectural-glass-doors.full': '',
   },
   tr: {
     // Brand & Header
@@ -416,5 +434,11 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'prod.mechanical-porcelain.name': 'Mekanik Porselen',
     'prod.mechanical-porcelain.short': '',
     'prod.mechanical-porcelain.full': '',
+    'prod.panoramic-sliding-glass.name': 'Cam',
+    'prod.panoramic-sliding-glass.short': '',
+    'prod.panoramic-sliding-glass.full': '',
+    'prod.architectural-glass-doors.name': 'Alüminyum',
+    'prod.architectural-glass-doors.short': '',
+    'prod.architectural-glass-doors.full': '',
   },
 }

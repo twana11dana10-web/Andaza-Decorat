@@ -9,7 +9,6 @@ import { cn } from '../../lib/utils'
 export const ProductCatalog: React.FC = () => {
   const {
     filteredProducts,
-    gridDensity,
     resetAllFilters,
   } = useShowroom()
   const { t } = useLanguage()
@@ -19,19 +18,25 @@ export const ProductCatalog: React.FC = () => {
   return (
     <section id="catalog-section" className="w-full relative min-h-screen bg-transparent">
       {/* Product Vitrine Grid Area */}
-      <div className="w-full max-w-[1700px] mx-auto px-2 sm:px-6 lg:px-8 xl:px-10 py-3 sm:py-8">
+      <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6">
         {filteredProducts.length > 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: shouldReduceMotion ? 0.01 : 0.25 }}
             className={cn(
-              "grid gap-3 sm:gap-6 lg:gap-8",
-              filteredProducts.length <= 2
-                ? "grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto"
-                : gridDensity === '5-col'
-                ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5"
-                : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4"
+              "grid gap-3.5 sm:gap-4 lg:gap-5 xl:gap-6 justify-center mx-auto",
+              filteredProducts.length === 1
+                ? "grid-cols-1 max-w-[280px]"
+                : filteredProducts.length === 2
+                ? "grid-cols-2 max-w-[570px]"
+                : filteredProducts.length === 3
+                ? "grid-cols-2 sm:grid-cols-3 max-w-[850px]"
+                : filteredProducts.length === 4
+                ? "grid-cols-2 sm:grid-cols-4 max-w-[1140px]"
+                : filteredProducts.length === 5
+                ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 max-w-[1420px]"
+                : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 max-w-[1720px]"
             )}
           >
             {filteredProducts.map((product, idx) => (

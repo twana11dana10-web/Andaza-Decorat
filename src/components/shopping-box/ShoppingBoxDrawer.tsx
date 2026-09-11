@@ -95,7 +95,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
                       src={productImage(localizedProduct.mainImage, 200)}
                       alt={localizedProduct.name}
                       loading="lazy"
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover"
                     />
                   </div>
 

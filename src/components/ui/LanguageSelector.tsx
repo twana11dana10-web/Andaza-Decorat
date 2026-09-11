@@ -34,10 +34,11 @@ export const LanguageSelector: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "inline-flex items-center justify-center gap-1 sm:gap-2 h-8 sm:h-10 px-2 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all duration-200 cursor-pointer backdrop-blur-md border active:scale-95",
+          "inline-flex items-center justify-center gap-1 sm:gap-2 h-8 sm:h-10 px-2 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold transition-all duration-300 cursor-pointer backdrop-blur-md border active:scale-95 select-none",
+          "hover:border-amber-400/80 dark:hover:border-amber-400/80 hover:shadow-[0_0_10px_rgba(217,170,75,0.28)] dark:hover:shadow-[0_0_12px_rgba(217,170,75,0.32)]",
           isOpen
             ? "bg-slate-200/90 dark:bg-[#1f293d] border-amber-400 text-slate-900 dark:text-white shadow-xs"
-            : "bg-slate-100/90 dark:bg-[#141a26]/80 hover:bg-slate-200/90 dark:hover:bg-[#1c2436] text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700/60 hover:border-amber-500/50 shadow-xs"
+            : "bg-slate-100/90 dark:bg-[#141a26]/80 hover:bg-slate-200/90 dark:hover:bg-[#1c2436] text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white border-slate-300 dark:border-slate-700/60 shadow-xs"
         )}
         aria-label={`Current language: ${currentOption.shortCode}. Click to change language.`}
         aria-expanded={isOpen}

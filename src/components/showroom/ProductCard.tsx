@@ -74,7 +74,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       transition={{ duration: 0.3, ease: 'easeOut' }}
       onClick={() => setInspectedProduct(rawProduct)}
       className={cn(
-        "group relative rounded-xl sm:rounded-2xl overflow-hidden p-2 sm:p-4.5 flex flex-col justify-between cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.015]",
+        "group relative rounded-xl sm:rounded-2xl overflow-hidden p-2 sm:p-3 flex flex-col justify-between cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.015] w-full",
         "bg-white dark:bg-[#131823] hover:bg-slate-50/95 dark:hover:bg-[#161e2e]",
         "border transition-all",
         isInCart
@@ -104,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* 1. Rich Photo Frame (Cover Fill with Subtle Glow) */}
       <div
         className={cn(
-          "relative aspect-square w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1.5 sm:mb-3.5 transition-colors shadow-inner",
+          "relative aspect-[5/4] w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1 sm:mb-2 transition-colors shadow-inner",
           isInCart
             ? "border-sky-400/50 dark:border-sky-400/40"
             : "border-slate-200 dark:border-slate-800/70 group-hover:border-amber-400/40 dark:group-hover:border-amber-400/30"
@@ -115,19 +115,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           alt={product.name}
           loading={priority ? 'eager' : 'lazy'}
           onError={() => setImageError(true)}
-          className="w-full h-full object-cover object-center transform group-hover:scale-108 transition-transform duration-700 ease-out"
+          className="w-full h-full object-cover object-center"
         />
         {/* Soft bottom vignette for photo depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 dark:from-[#0c1017]/40 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* 2. Product Meta & Pricing */}
-      <div className="space-y-1 sm:space-y-1.5 text-left flex-1 flex flex-col justify-between">
-        <div className="space-y-0.5 sm:space-y-1">
+      <div className="space-y-0.5 sm:space-y-1 text-left flex-1 flex flex-col justify-between">
+        <div className="space-y-0.5">
           {/* Title with 2-line clamp */}
           <h3
             className={cn(
-              "font-sans font-semibold text-xs sm:text-[15px] transition-colors leading-snug line-clamp-2 min-h-[2.1rem] sm:min-h-[2.6rem]",
+              "font-sans font-semibold text-[11px] sm:text-[13px] transition-colors leading-snug line-clamp-2 min-h-[1.6rem] sm:min-h-[2rem]",
               isInCart
                 ? "text-sky-700 dark:text-sky-300"
                 : "text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300"
@@ -137,21 +137,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h3>
 
           {/* Brand Name */}
-          <p className="text-[10px] min-[360px]:text-[11px] sm:text-[13px] text-slate-500 dark:text-slate-400 font-medium truncate">
+          <p className="text-[9px] min-[360px]:text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate">
             {product.brand || t('brand.name')}
           </p>
         </div>
 
         {/* Price Display and Bottom-Right Spinbutton / Action Button */}
         <div className={cn(
-          "pt-1 sm:pt-2 flex items-center justify-between gap-1 sm:gap-2 -mx-2 sm:-mx-4.5 -mb-2 sm:-mb-4.5 px-2 sm:px-4.5 pb-2 sm:pb-4.5 mt-0.5 sm:mt-1.5 rounded-b-xl sm:rounded-b-2xl transition-all duration-300",
+          "pt-1 sm:pt-1 flex items-center justify-between gap-1 sm:gap-1.5 -mx-2 sm:-mx-3 -mb-2 sm:-mb-3 px-2 sm:px-3 pb-2 sm:pb-3 mt-0.5 sm:mt-0.5 rounded-b-xl sm:rounded-b-2xl transition-all duration-300",
           isInCart
             ? "bg-sky-50/80 dark:bg-sky-950/30 border-t border-sky-400/40 dark:border-sky-500/30 shadow-[inset_0_2px_8px_rgba(14,165,233,0.08)] dark:shadow-[inset_0_2px_8px_rgba(14,165,233,0.12)]"
             : "border-t border-transparent"
         )}>
           <div className="flex items-baseline min-w-0">
             <span className={cn(
-              "font-sans font-bold text-[11px] min-[360px]:text-xs sm:text-[16px] tracking-tight transition-colors duration-300 truncate",
+              "font-sans font-bold text-[10px] min-[360px]:text-[11px] sm:text-[13px] tracking-tight transition-colors duration-300 truncate",
               isInCart
                 ? "text-sky-700 dark:text-sky-300"
                 : "text-slate-900 dark:text-white"
@@ -175,11 +175,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           ) : (
             <button
               onClick={handleQuickAdd}
-              className="inline-flex items-center gap-0.5 sm:gap-1.5 px-2 min-[360px]:px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-bold text-[10px] min-[360px]:text-[11px] sm:text-[13px] tracking-wider uppercase bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-400/40 hover:shadow-[0_0_15px_rgba(197,160,89,0.45)] transition-all duration-200 cursor-pointer shadow-sm active:scale-95 shrink-0"
+              className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 min-[360px]:px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-lg sm:rounded-xl font-bold text-[9px] min-[360px]:text-[10px] sm:text-[11px] tracking-wider uppercase bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-400/40 hover:shadow-[0_0_15px_rgba(197,160,89,0.45)] transition-all duration-200 cursor-pointer shadow-sm active:scale-95 shrink-0"
               title={t('card.add')}
               aria-label={`${t('card.add')} ${product.name}`}
             >
-              <Plus className="h-2.5 sm:h-3.5 w-2.5 sm:w-3.5 stroke-[3]" />
+              <Plus className="h-2.5 sm:h-3 w-2.5 sm:w-3 stroke-[3]" />
               <span>{t('card.add')}</span>
             </button>
           )}
