@@ -16,9 +16,9 @@ export const ProductCatalog: React.FC = () => {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section id="catalog-section" className="w-full relative min-h-screen bg-transparent">
+    <section id="catalog-section" className="w-full relative bg-transparent">
       {/* Product Vitrine Grid Area */}
-      <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6">
+      <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-2 sm:pb-3">
         {filteredProducts.length > 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
@@ -33,7 +33,7 @@ export const ProductCatalog: React.FC = () => {
                 : filteredProducts.length === 3
                 ? "grid-cols-2 sm:grid-cols-3 max-w-[850px]"
                 : filteredProducts.length === 4
-                ? "grid-cols-2 sm:grid-cols-4 max-w-[1140px]"
+                ? "grid-cols-2 sm:grid-cols-4 max-w-[1360px]"
                 : filteredProducts.length === 5
                 ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 max-w-[1420px]"
                 : "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 max-w-[1720px]"

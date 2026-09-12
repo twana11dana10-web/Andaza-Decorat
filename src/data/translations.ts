@@ -122,7 +122,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'Search products, collections...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'If you have any questions, click here',
+    'help.floatingText': 'Hello',
     'help.whatsappPreset': 'Hello ANDAZA DECORAT! I need assistance with your showroom collections.',
 
     // Common
@@ -221,7 +221,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'ابحث في المنتجات والمجموعات...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'إذا كان لديك أي سؤال، اضغط هنا',
+    'help.floatingText': 'مرحبا',
     'help.whatsappPreset': 'مرحباً أندازة ديكورات! أحتاج إلى مساعدة بخصوص معروضاتكم.',
 
     // Common
@@ -320,7 +320,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'گەڕان بۆ بەرهەم و کۆمەڵەکان...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'ئەگەر پرسیارێکت هەیە، ئێرە دابگرە',
+    'help.floatingText': 'سڵاو',
     'help.whatsappPreset': 'سڵاو ئەندازە دیکۆرات! پێویستم بە هاوکارییە دەربارەی بەرهەمەکانتان.',
 
     // Common
@@ -338,7 +338,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'prod.panoramic-sliding-glass.name': 'جام',
     'prod.panoramic-sliding-glass.short': '',
     'prod.panoramic-sliding-glass.full': '',
-    'prod.architectural-glass-doors.name': 'ئەلەمینۆم',
+    'prod.architectural-glass-doors.name': 'ئەلەمنیۆم',
     'prod.architectural-glass-doors.short': '',
     'prod.architectural-glass-doors.full': '',
   },
@@ -419,7 +419,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'Ürünlerde, koleksiyonlarda arayın...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'Herhangi bir sorunuz varsa, buraya tıklayın',
+    'help.floatingText': 'Merhaba',
     'help.whatsappPreset': 'Merhaba ANDAZA DECORAT! Showroom koleksiyonlarınız hakkında yardıma ihtiyacım var.',
 
     // Common

@@ -9,7 +9,7 @@ export const BRAND_CONFIG = {
     phone: "07509151156",
     whatsapp: "9647509151156",
     whatsappDisplay: "07509151156",
-    contactDisplay: "07509151156 - 07782913892",
+    contactDisplay: "0750 915 1156 - 0778 291 3892",
     phones: ["07509151156", "07782913892"],
     hours: "Sat – Thu: 10:00 AM – 9:00 PM (By Appointment & Walk-in)",
   },

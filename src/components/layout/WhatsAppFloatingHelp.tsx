@@ -12,7 +12,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
   }
 
   return (
-    <footer className="w-full relative z-10 py-3.5 sm:py-6 border-t border-slate-200/80 dark:border-slate-800/80 mt-auto bg-white/70 dark:bg-[#0a0e14]/70 backdrop-blur-xl">
+    <footer className="w-full relative z-10 py-3 sm:py-4 border-t border-slate-200/80 dark:border-slate-800/80 mt-auto bg-white/70 dark:bg-[#0a0e14]/70 backdrop-blur-xl">
       <div className="max-w-[1700px] mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
 
         {/* Brand Information & Credits (Left on desktop, 2nd on mobile) */}
@@ -21,7 +21,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
             {t('brand.tagline')}
           </p>
           <p className="text-[11px] sm:text-xs font-medium text-slate-600 dark:text-slate-400" dir="ltr">
-            ( contact : 07509151156 - 07782913892 )
+            Contact: 0750 915 1156 - 0778 291 3892
           </p>
           <div className="flex flex-wrap items-center justify-center sm:justify-start rtl:sm:justify-end gap-x-1.5 sm:gap-x-2 gap-y-0.5 text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500">
             <span>© 2026 Andaza Decorat.</span>

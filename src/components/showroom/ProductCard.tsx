@@ -74,7 +74,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       transition={{ duration: 0.3, ease: 'easeOut' }}
       onClick={() => setInspectedProduct(rawProduct)}
       className={cn(
-        "group relative rounded-xl sm:rounded-2xl overflow-hidden p-2 sm:p-3 flex flex-col justify-between cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.015] w-full",
+        "group relative rounded-xl sm:rounded-2xl overflow-hidden p-2 sm:p-3 lg:p-3.5 flex flex-col justify-between cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.015] w-full",
         "bg-white dark:bg-[#131823] hover:bg-slate-50/95 dark:hover:bg-[#161e2e]",
         "border transition-all",
         isInCart
@@ -104,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* 1. Rich Photo Frame (Cover Fill with Subtle Glow) */}
       <div
         className={cn(
-          "relative aspect-[5/4] w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1 sm:mb-2 transition-colors shadow-inner",
+          "relative aspect-square w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1.5 sm:mb-2.5 transition-colors shadow-inner",
           isInCart
             ? "border-sky-400/50 dark:border-sky-400/40"
             : "border-slate-200 dark:border-slate-800/70 group-hover:border-amber-400/40 dark:group-hover:border-amber-400/30"
