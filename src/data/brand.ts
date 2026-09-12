@@ -6,8 +6,11 @@ export const BRAND_CONFIG = {
   showroomAddress: "742 Al-Andalus Boulevard, Design District, Riyadh, KSA",
   contact: {
     email: "atelier@andazadecorat.com",
-    phone: "07782913892",
-    whatsapp: "9647782913892",
+    phone: "07509151156",
+    whatsapp: "9647509151156",
+    whatsappDisplay: "07509151156",
+    contactDisplay: "07509151156 - 07782913892",
+    phones: ["07509151156", "07782913892"],
     hours: "Sat – Thu: 10:00 AM – 9:00 PM (By Appointment & Walk-in)",
   },
   social: {

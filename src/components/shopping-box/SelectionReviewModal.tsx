@@ -175,9 +175,9 @@ export const SelectionReviewModal: React.FC = () => {
     document.body.removeChild(a)
   }
 
-  // Opens a WhatsApp chat with the showroom owner (07782913892 -> 9647782913892)
+  // Opens a WhatsApp chat with the showroom owner (07509151156 -> 9647509151156)
   const openShowroomWhatsAppChat = (message?: string) => {
-    const rawPhone = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07782913892'
+    const rawPhone = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07509151156'
     const cleanPhone = rawPhone.replace(/[^0-9]/g, '')
     const formattedShowroomPhone = cleanPhone.startsWith('0')
       ? '964' + cleanPhone.slice(1)
@@ -192,7 +192,7 @@ export const SelectionReviewModal: React.FC = () => {
   }
 
   /**
-   * 3-tier PDF delivery to WhatsApp (07782913892):
+   * 3-tier PDF delivery to WhatsApp (07509151156):
    * 1. WhatsApp Gateway API (UltraMsg/Green-API) — fully automatic native PDF, desktop + mobile.
    * 2. Web Share API — share sheet opens with the PDF attached, user picks WhatsApp + contact.
    * 3. Fallback — download the PDF + open wa.me chat, user attaches manually.

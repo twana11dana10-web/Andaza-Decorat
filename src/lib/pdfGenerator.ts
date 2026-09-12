@@ -157,7 +157,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
     doc.setFont(fontFamily, 'normal')
     doc.setFontSize(7)
     doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2])
-    doc.text(`${BRAND_CONFIG.name} • Contact: ${BRAND_CONFIG.contact.phone}`, margin, footerY)
+    doc.text(`${BRAND_CONFIG.name} • Contact: ${BRAND_CONFIG.contact.contactDisplay || BRAND_CONFIG.contact.phone}`, margin, footerY)
     doc.text(`Page ${pageNumber} of ${totalPages}`, pageWidth - margin, footerY, { align: 'right' })
   }
 

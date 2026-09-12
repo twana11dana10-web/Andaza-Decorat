@@ -16,9 +16,12 @@ export const WhatsAppFloatingHelp: React.FC = () => {
       <div className="max-w-[1700px] mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
 
         {/* Brand Information & Credits (Left on desktop, 2nd on mobile) */}
-        <div className="w-full sm:w-auto space-y-0.5 sm:space-y-1 text-center sm:text-left rtl:sm:text-right order-2 sm:order-1">
+        <div className="w-full sm:w-auto space-y-1 sm:space-y-1.5 text-center sm:text-left rtl:sm:text-right order-2 sm:order-1">
           <p className="text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-slate-300">
             {t('brand.tagline')}
+          </p>
+          <p className="text-[11px] sm:text-xs font-medium text-slate-600 dark:text-slate-400" dir="ltr">
+            ( contact : 07509151156 - 07782913892 )
           </p>
           <div className="flex flex-wrap items-center justify-center sm:justify-start rtl:sm:justify-end gap-x-1.5 sm:gap-x-2 gap-y-0.5 text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500">
             <span>© 2026 Andaza Decorat.</span>
