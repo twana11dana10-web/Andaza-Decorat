@@ -131,8 +131,8 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
     // Right Ref and Date
     doc.setFont(fontFamily, 'bold')
     doc.setFontSize(9)
-    doc.setTextColor(COLOR_DARK[0], COLOR_DARK[1], COLOR_DARK[2])
-    doc.text(data.documentNumber, pageWidth - margin, 19, { align: 'right' })
+    const docNumberDisplay = data.documentNumber.startsWith('No.') ? data.documentNumber : `No.${data.documentNumber}`
+    doc.text(docNumberDisplay, pageWidth - margin, 19, { align: 'right' })
 
     doc.setFont(fontFamily, 'normal')
     doc.setFontSize(7.5)

@@ -69,3 +69,26 @@ export function productImage(url: string, width?: number): string {
   }
   return url
 }
+
+const INVOICE_COUNTER_KEY = 'andaza_invoice_counter_v1'
+
+/**
+ * Returns the next sequential invoice number (starting at 51),
+ * automatically incrementing on each creation and persisting in localStorage.
+ */
+export function getNextInvoiceNumber(): number {
+  const DEFAULT_START = 51
+  try {
+    const saved = localStorage.getItem(INVOICE_COUNTER_KEY)
+    if (!saved) {
+      localStorage.setItem(INVOICE_COUNTER_KEY, String(DEFAULT_START))
+      return DEFAULT_START
+    }
+    const parsed = parseInt(saved, 10)
+    const next = Number.isFinite(parsed) ? parsed + 1 : DEFAULT_START
+    localStorage.setItem(INVOICE_COUNTER_KEY, String(next))
+    return next
+  } catch {
+    return DEFAULT_START
+  }
+}

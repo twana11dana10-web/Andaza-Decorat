@@ -24,7 +24,7 @@ import { BRAND_CONFIG } from '../../data/brand'
 import { PDFDocumentData } from '../../types/pdf'
 import { generateSpecificationPDF } from '../../lib/pdfGenerator'
 import { loadArabicFont, loadLatinFont, needsArabicFont, needsLatinFont } from '../../lib/pdfFontLoader'
-import { formatPrice } from '../../lib/helpers'
+import { formatPrice, getNextInvoiceNumber } from '../../lib/helpers'
 import { getLocalizedProduct } from '../../lib/localizeProduct'
 import {
   sendPdfDocumentToWhatsApp,
@@ -102,12 +102,20 @@ export const SelectionReviewModal: React.FC = () => {
         await loadLatinFont()
       }
 
-      const docNum = `SPEC-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`
-      const now = new Date().toLocaleDateString('en-GB', {
+      const dateObj = new Date()
+      const invoiceNumber = getNextInvoiceNumber()
+      const docNum = `No.${invoiceNumber}`
+      const datePart = dateObj.toLocaleDateString('en-GB', {
         day: 'numeric',
-        month: 'long',
+        month: 'short',
         year: 'numeric',
       })
+      const timePart = dateObj.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      })
+      const now = `${datePart}, ${timePart}`
 
       // Localize items for the invoice PDF document
       const localizedItems = items.map(item => ({
@@ -155,7 +163,8 @@ export const SelectionReviewModal: React.FC = () => {
     // 1. Download file to user's device
     const a = document.createElement('a')
     a.href = generatedPdfBlobUrl
-    a.download = `order-invoice-${generatedDocNumber.toLowerCase()}.pdf`
+    const safeDocNum = generatedDocNumber.toLowerCase().replace(/[^a-z0-9_-]/g, '')
+    a.download = `order-invoice-${safeDocNum}.pdf`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -204,7 +213,8 @@ export const SelectionReviewModal: React.FC = () => {
     setShareFeedback(null)
     setShareFeedbackError(false)
 
-    const fileName = `order-invoice-${generatedDocNumber.toLowerCase()}.pdf`
+    const safeDocNum = generatedDocNumber.toLowerCase().replace(/[^a-z0-9_-]/g, '')
+    const fileName = `order-invoice-${safeDocNum}.pdf`
     const caption = t('review.waMessageCaption')
       .replace('{docNumber}', generatedDocNumber)
       .replace('{clientName}', clientInfo.clientName || '')
@@ -266,7 +276,7 @@ export const SelectionReviewModal: React.FC = () => {
                 {t('review.docReadyTitle')}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                Ref: <strong className="text-amber-600 dark:text-amber-400 font-mono">{generatedDocNumber}</strong> • Total: <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
+                <strong className="text-amber-600 dark:text-amber-400 font-mono">{generatedDocNumber}</strong> • Total: <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
               </p>
               <p className="text-[11px] sm:text-xs text-sky-600 dark:text-sky-400/90 font-medium">
                 {t('review.directWhatsAppConfigured')} <span className="text-slate-900 dark:text-white font-bold">{BRAND_CONFIG.contact.phone}</span>

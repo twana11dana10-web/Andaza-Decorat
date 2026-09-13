@@ -122,8 +122,8 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'Search products, collections...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'Hello',
-    'help.whatsappPreset': 'Hello ANDAZA DECORAT! I need assistance with your showroom collections.',
+    'help.floatingText': "If you need help, I'm here",
+    'help.whatsappPreset': 'Hello',
 
     // Common
     'common.required': '*',
@@ -221,8 +221,8 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'ابحث في المنتجات والمجموعات...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'مرحبا',
-    'help.whatsappPreset': 'مرحباً أندازة ديكورات! أحتاج إلى مساعدة بخصوص معروضاتكم.',
+    'help.floatingText': 'إذا كنت بحاجة إلى مساعدة أنا هنا',
+    'help.whatsappPreset': 'مرحباً',
 
     // Common
     'common.required': '*',
@@ -320,8 +320,8 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'گەڕان بۆ بەرهەم و کۆمەڵەکان...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'سڵاو',
-    'help.whatsappPreset': 'سڵاو ئەندازە دیکۆرات! پێویستم بە هاوکارییە دەربارەی بەرهەمەکانتان.',
+    'help.floatingText': 'ئەگەر پێویستت بە هاوکارییە من لێرەم',
+    'help.whatsappPreset': 'سڵاو',
 
     // Common
     'common.required': '*',
@@ -419,8 +419,8 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'catalog.searchPlaceholder': 'Ürünlerde, koleksiyonlarda arayın...',
 
     // WhatsApp Floating Help
-    'help.floatingText': 'Merhaba',
-    'help.whatsappPreset': 'Merhaba ANDAZA DECORAT! Showroom koleksiyonlarınız hakkında yardıma ihtiyacım var.',
+    'help.floatingText': 'Yardıma ihtiyacınız varsa buradayım',
+    'help.whatsappPreset': 'Merhaba',
 
     // Common
     'common.required': '*',
