@@ -105,7 +105,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'review.docReadyTitle': 'Invoice Document Ready',
     'review.directWhatsAppConfigured': 'Direct WhatsApp delivery configured for:',
     'review.downloadAndOpen': 'Download & Open Invoice',
-    'review.sendToWhatsApp': "Send Invoice to What's up",
+    'review.sendToWhatsApp': 'Send Invoice to WhatsApp',
     'review.returnToShowroom': '← Return to Showroom',
     'review.phoneError': 'Please enter 10 or 11 digits for your phone number (e.g. 07501234567).',
     'review.generationError': 'Could not generate invoice. Please try again.',
@@ -113,7 +113,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'review.waDesktopNote': 'The invoice PDF file has been downloaded. Please attach it to this chat.',
     'review.waGatewaySuccess': 'Invoice PDF sent directly to WhatsApp!',
     'review.sendingToWhatsApp': 'Sending to WhatsApp...',
-    'review.waMessageCaption': 'Invoice {docNumber} from {clientName} — Total: {total}',
+    'review.waMessageCaption': 'New order — Invoice {docNumber}',
+    'review.waOpenedTitle': 'WhatsApp is ready',
+    'review.waOpenedNote': 'Your invoice message is drafted in WhatsApp — just press Send.',
 
     // Catalog & Filters
     'catalog.noProducts': 'No products found',
@@ -212,7 +214,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'review.waDesktopNote': 'تم تحميل ملف الفاتورة PDF. يرجى إرفاقه في هذه المحادثة.',
     'review.waGatewaySuccess': 'تم إرسال ملف الفاتورة PDF مباشرة عبر واتساب!',
     'review.sendingToWhatsApp': 'جارٍ الإرسال عبر واتساب...',
-    'review.waMessageCaption': 'فاتورة {docNumber} من {clientName} — الإجمالي: {total}',
+    'review.waMessageCaption': 'طلب جديد — فاتورة {docNumber}',
+    'review.waOpenedTitle': 'واتساب جاهز',
+    'review.waOpenedNote': 'تمت كتابة رسالة الفاتورة في واتساب — فقط اضغط إرسال.',
 
     // Catalog & Filters
     'catalog.noProducts': 'لم يتم العثور على منتجات',
@@ -311,7 +315,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'review.waDesktopNote': 'فایلی پسوولەی PDF داگیراوە. تکایە لەم چاتەدا پەیوەستی بکە و بینێرە.',
     'review.waGatewaySuccess': 'فایلی پسوولەی PDF ڕاستەوخۆ بۆ واتسئاپ نێردرا!',
     'review.sendingToWhatsApp': 'ناردن بۆ واتسئاپ...',
-    'review.waMessageCaption': 'پسوولەی {docNumber} لە {clientName} — کۆی گشتی: {total}',
+    'review.waMessageCaption': 'داواکاری نوێ — پسوولەی {docNumber}',
+    'review.waOpenedTitle': 'واتسئاپ ئامادەیە',
+    'review.waOpenedNote': 'نامەی پسوولەکە لە واتسئاپ نووسراوە — تەنها دوگمەی ناردن دابگرە.',
 
     // Catalog & Filters
     'catalog.noProducts': 'هیچ بەرهەمێک نەدۆزرایەوە',
@@ -410,7 +416,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'review.waDesktopNote': 'Fatura PDF dosyası indirildi. Lütfen bu sohbete ekleyip gönderin.',
     'review.waGatewaySuccess': 'Fatura PDF dosyası doğrudan WhatsApp’a gönderildi!',
     'review.sendingToWhatsApp': 'WhatsApp’a gönderiliyor...',
-    'review.waMessageCaption': '{clientName} adına {docNumber} numaralı fatura — Toplam: {total}',
+    'review.waMessageCaption': 'Yeni sipariş — Fatura {docNumber}',
+    'review.waOpenedTitle': 'WhatsApp hazır',
+    'review.waOpenedNote': 'Fatura mesajınız WhatsApp’ta hazır — sadece Gönder’e basın.',
 
     // Catalog & Filters
     'catalog.noProducts': 'Ürün bulunamadı',

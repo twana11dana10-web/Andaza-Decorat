@@ -67,6 +67,7 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
     orientation: 'portrait',
     unit: 'mm',
     format: 'a4',
+    compress: true,
   })
 
   // Determine which font family to use based on language

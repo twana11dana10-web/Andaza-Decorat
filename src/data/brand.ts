@@ -38,12 +38,5 @@ export const BRAND_CONFIG = {
     },
     customEndpoint: import.meta.env.VITE_CUSTOM_STORAGE_ENDPOINT || '',
   },
-  whatsappApi: {
-    // WhatsApp Document API provider for sending native PDF document messages
-    // Can be configured in .env (VITE_WHATSAPP_INSTANCE_ID, VITE_WHATSAPP_TOKEN)
-    provider: (import.meta.env.VITE_WHATSAPP_API_PROVIDER as 'ultramsg' | 'green-api') || 'ultramsg',
-    instanceId: import.meta.env.VITE_WHATSAPP_INSTANCE_ID || '',
-    token: import.meta.env.VITE_WHATSAPP_TOKEN || '',
-  },
   year: 2026,
 }

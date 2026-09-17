@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import {
-  FileText,
-  Download,
-  ExternalLink,
   ArrowLeft,
   CheckCircle2,
   Loader2,
@@ -26,12 +23,7 @@ import { generateSpecificationPDF } from '../../lib/pdfGenerator'
 import { loadArabicFont, loadLatinFont, needsArabicFont, needsLatinFont } from '../../lib/pdfFontLoader'
 import { formatPrice, getNextInvoiceNumber } from '../../lib/helpers'
 import { getLocalizedProduct } from '../../lib/localizeProduct'
-import {
-  sendPdfDocumentToWhatsApp,
-  sharePdfFile,
-  isWhatsAppGatewayConfigured,
-  canSharePdfFile,
-} from '../../lib/whatsappApi'
+import { showroomWhatsAppUrl, uploadInvoicePdf } from '../../lib/whatsappApi'
 
 export const SelectionReviewModal: React.FC = () => {
   const {
@@ -50,12 +42,10 @@ export const SelectionReviewModal: React.FC = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generationError, setGenerationError] = useState<string | null>(null)
   const [phoneError, setPhoneError] = useState<string | null>(null)
-  const [generatedPdfBlobUrl, setGeneratedPdfBlobUrl] = useState<string | null>(null)
-  const [generatedPdfBlob, setGeneratedPdfBlob] = useState<Blob | null>(null)
-  const [generatedDocNumber, setGeneratedDocNumber] = useState<string | null>(null)
-  const [shareFeedback, setShareFeedback] = useState<string | null>(null)
-  const [shareFeedbackError, setShareFeedbackError] = useState(false)
-  const [isSendingToWhatsApp, setIsSendingToWhatsApp] = useState(false)
+  // Set once WhatsApp has been opened with the drafted invoice message
+  const [sentDocNumber, setSentDocNumber] = useState<string | null>(null)
+  // True when the PDF link could not be created and the file was downloaded instead
+  const [needsManualAttach, setNeedsManualAttach] = useState(false)
 
   if (!isReviewOpen) return null
 
@@ -68,15 +58,24 @@ export const SelectionReviewModal: React.FC = () => {
     setIsReviewOpen(false)
     setGenerationError(null)
     setPhoneError(null)
-    setGeneratedPdfBlobUrl(null)
-    setGeneratedPdfBlob(null)
-    setGeneratedDocNumber(null)
-    setShareFeedback(null)
-    setShareFeedbackError(false)
-    setIsSendingToWhatsApp(false)
+    setSentDocNumber(null)
+    setNeedsManualAttach(false)
   }
 
-  const handleGeneratePDF = async (e?: React.FormEvent) => {
+  const downloadPdf = (blob: Blob, docNumber: string) => {
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = `order-invoice-${docNumber.toLowerCase().replace(/[^a-z0-9_-]/g, '')}.pdf`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+  }
+
+  /**
+   * One-click checkout: builds the invoice PDF, uploads it, then opens the showroom
+   * WhatsApp chat with the message (including the PDF link) already drafted.
+   */
+  const handleCheckout = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
     if (items.length === 0) return
 
@@ -91,9 +90,12 @@ export const SelectionReviewModal: React.FC = () => {
     }
     setPhoneError(null)
 
+    // Open the tab now, while still inside the click, so popup blockers allow it
+    const waTab = window.open('', '_blank')
+    if (waTab) waTab.document.title = 'WhatsApp…'
+
     setIsGenerating(true)
     setGenerationError(null)
-    setShareFeedback(null)
     try {
       // Pre-load the required PDF font (cached after first load)
       if (needsArabicFont(language)) {
@@ -143,129 +145,41 @@ export const SelectionReviewModal: React.FC = () => {
 
       const doc = await generateSpecificationPDF(documentData, language)
       const blob = doc.output('blob')
-      const blobUrl = URL.createObjectURL(blob)
+      const pdfUrl = await uploadInvoicePdf(blob)
 
-      setGeneratedPdfBlob(blob)
-      setGeneratedPdfBlobUrl(blobUrl)
-      setGeneratedDocNumber(docNum)
+      // Customer details live inside the PDF; the message only carries the invoice link
+      let message = t('review.waMessageCaption').replace('{docNumber}', docNum)
+      if (pdfUrl) {
+        message += `\n${pdfUrl}`
+      } else {
+        // No upload endpoint available: hand the file over for manual attaching
+        downloadPdf(blob, docNum)
+      }
+
+      const waUrl = showroomWhatsAppUrl(message)
+      if (waTab) {
+        waTab.location.href = waUrl
+      } else {
+        window.location.href = waUrl
+      }
+
+      setNeedsManualAttach(!pdfUrl)
+      setSentDocNumber(docNum)
     } catch (err) {
       console.error('Error generating invoice:', err)
+      waTab?.close()
       setGenerationError(t('review.generationError'))
     } finally {
       setIsGenerating(false)
     }
   }
 
-  // Combined action: Downloads the invoice AND opens it in the browser simultaneously
-  const handleDownloadAndOpenInvoice = () => {
-    if (!generatedDocNumber || !generatedPdfBlobUrl) return
-
-    // 1. Download file to user's device
-    const a = document.createElement('a')
-    a.href = generatedPdfBlobUrl
-    const safeDocNum = generatedDocNumber.toLowerCase().replace(/[^a-z0-9_-]/g, '')
-    a.download = `order-invoice-${safeDocNum}.pdf`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-
-    // 2. Open invoice preview in a new tab simultaneously
-    window.open(generatedPdfBlobUrl, '_blank')
-  }
-
-  // Downloads the PDF blob to the user's device
-  const downloadPdfToDevice = (fileName: string) => {
-    if (!generatedPdfBlob) return
-    const a = document.createElement('a')
-    a.href = URL.createObjectURL(generatedPdfBlob)
-    a.download = fileName
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-  }
-
-  // Opens a WhatsApp chat with the showroom owner (07509151156 -> 9647509151156)
-  const openShowroomWhatsAppChat = (message?: string) => {
-    const rawPhone = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07509151156'
-    const cleanPhone = rawPhone.replace(/[^0-9]/g, '')
-    const formattedShowroomPhone = cleanPhone.startsWith('0')
-      ? '964' + cleanPhone.slice(1)
-      : cleanPhone.startsWith('964')
-      ? cleanPhone
-      : '964' + cleanPhone
-
-    const waUrl = message
-      ? `https://wa.me/${formattedShowroomPhone}?text=${encodeURIComponent(message)}`
-      : `https://wa.me/${formattedShowroomPhone}`
-    window.open(waUrl, '_blank', 'noopener,noreferrer')
-  }
-
-  /**
-   * 3-tier PDF delivery to WhatsApp (07509151156):
-   * 1. WhatsApp Gateway API (UltraMsg/Green-API) — fully automatic native PDF, desktop + mobile.
-   * 2. Web Share API — share sheet opens with the PDF attached, user picks WhatsApp + contact.
-   * 3. Fallback — download the PDF + open wa.me chat, user attaches manually.
-   */
-  const handleSendPDFToWhatsApp = async () => {
-    if (!generatedDocNumber || !generatedPdfBlob || isSendingToWhatsApp) return
-
-    setIsSendingToWhatsApp(true)
-    setShareFeedback(null)
-    setShareFeedbackError(false)
-
-    const safeDocNum = generatedDocNumber.toLowerCase().replace(/[^a-z0-9_-]/g, '')
-    const fileName = `order-invoice-${safeDocNum}.pdf`
-    const caption = t('review.waMessageCaption')
-      .replace('{docNumber}', generatedDocNumber)
-      .replace('{clientName}', clientInfo.clientName || '')
-      .replace('{total}', formatPrice(totalValuation))
-
-    // Tier 1: WhatsApp Gateway API — sends the actual PDF file automatically
-    if (isWhatsAppGatewayConfigured()) {
-      try {
-        const result = await sendPdfDocumentToWhatsApp({
-          pdfBlob: generatedPdfBlob,
-          fileName,
-          docNumber: generatedDocNumber,
-          clientName: clientInfo.clientName,
-          clientPhone: clientInfo.phone,
-          caption,
-        })
-        if (result.success) {
-          setShareFeedback(t('review.waGatewaySuccess'))
-          setIsSendingToWhatsApp(false)
-          return
-        }
-        console.warn('WhatsApp gateway failed, falling back:', result.error)
-      } catch (err) {
-        console.warn('WhatsApp gateway error, falling back:', err)
-      }
-    }
-
-    // Tier 2: Web Share API — PDF file attached in the native share sheet
-    if (canSharePdfFile()) {
-      const shared = await sharePdfFile(generatedPdfBlob, fileName, caption)
-      if (shared) {
-        setShareFeedback(t('review.waShareSuccess'))
-        setIsSendingToWhatsApp(false)
-        return
-      }
-    }
-
-    // Tier 3: Fallback — download PDF + open WhatsApp chat for manual attach
-    downloadPdfToDevice(fileName)
-    openShowroomWhatsAppChat(caption)
-    setShareFeedback(t('review.waDesktopNote'))
-    setShareFeedbackError(false)
-    setIsSendingToWhatsApp(false)
-  }
-
   return (
     <Dialog open={isReviewOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogContent className="max-w-3xl w-full sm:w-[92vw] p-0 sm:p-7 max-h-[94vh] sm:max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0f141e] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-2xl">
         
-        {/* Document Ready Success View */}
-        {generatedPdfBlobUrl && generatedDocNumber ? (
+        {/* WhatsApp Opened Confirmation */}
+        {sentDocNumber ? (
           <div className="space-y-4 sm:space-y-5 py-2 sm:py-3 animate-fade-in text-center px-4 sm:px-0">
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-sky-500/15 text-sky-600 dark:text-sky-400 mx-auto flex items-center justify-center border border-sky-500/30">
               <CheckCircle2 className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -273,62 +187,15 @@ export const SelectionReviewModal: React.FC = () => {
 
             <div className="space-y-1 sm:space-y-1.5">
               <h3 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white">
-                {t('review.docReadyTitle')}
+                {t('review.waOpenedTitle')}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                <strong className="text-amber-600 dark:text-amber-400 font-mono">{generatedDocNumber}</strong> • Total: <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
+                <strong className="text-amber-600 dark:text-amber-400 font-mono">{sentDocNumber}</strong> • <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
               </p>
-              <p className="text-[11px] sm:text-xs text-sky-600 dark:text-sky-400/90 font-medium">
-                {t('review.directWhatsAppConfigured')} <span className="text-slate-900 dark:text-white font-bold">{BRAND_CONFIG.contact.phone}</span>
+              <p className="text-xs sm:text-sm text-sky-600 dark:text-sky-400/90 font-medium max-w-md mx-auto">
+                {needsManualAttach ? t('review.waDesktopNote') : t('review.waOpenedNote')}
               </p>
             </div>
-
-            {/* Action Buttons Grid */}
-            <div className="space-y-2.5 sm:space-y-3 pt-1 sm:pt-2">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5">
-                {/* 1. Combined Download & Open Invoice */}
-                <button
-                  onClick={handleDownloadAndOpenInvoice}
-                  className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 hover:shadow-[0_0_16px_rgba(197,160,89,0.45)]"
-                  title={t('review.downloadAndOpen')}
-                >
-                  <Download className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-                  <span>{t('review.downloadAndOpen')}</span>
-                  <ExternalLink className="h-3 w-3 sm:h-3.5 sm:w-3.5 opacity-75" />
-                </button>
-
-                {/* 2. Send Invoice to WhatsApp */}
-                <button
-                  onClick={handleSendPDFToWhatsApp}
-                  disabled={isSendingToWhatsApp}
-                  className="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 text-white py-3 sm:py-3.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-md cursor-pointer active:scale-98 border border-sky-400/40 hover:shadow-[0_0_16px_rgba(14,165,233,0.4)] disabled:opacity-60 disabled:cursor-wait"
-                  title={t('review.sendToWhatsApp')}
-                >
-                  {isSendingToWhatsApp ? (
-                    <>
-                      <Loader2 className="h-4 w-4 sm:h-4.5 sm:w-4.5 animate-spin" />
-                      <span>{t('review.sendingToWhatsApp')}</span>
-                    </>
-                  ) : (
-                    <>
-                      <MessageCircle className="h-4 w-4 sm:h-4.5 sm:w-4.5 fill-white/20" />
-                      <span>{t('review.sendToWhatsApp')}</span>
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Share feedback alert if any */}
-            {shareFeedback && (
-              <p className={`text-xs py-1.5 px-3 rounded-lg max-w-md mx-auto border ${
-                shareFeedbackError
-                  ? 'text-amber-600 dark:text-amber-300 bg-amber-500/10 border-amber-500/20'
-                  : 'text-sky-600 dark:text-sky-300 bg-sky-500/10 border-sky-500/20'
-              }`}>
-                {shareFeedback}
-              </p>
-            )}
 
             <div className="pt-2">
               <button
@@ -341,7 +208,7 @@ export const SelectionReviewModal: React.FC = () => {
           </div>
         ) : (
           /* User Information Form */
-          <form onSubmit={handleGeneratePDF} className="space-y-3.5 sm:space-y-4 animate-fade-in text-left px-4 sm:px-0 pb-2 sm:pb-0">
+          <form onSubmit={handleCheckout} className="space-y-3.5 sm:space-y-4 animate-fade-in text-left px-4 sm:px-0 pb-2 sm:pb-0">
             
             {/* Header */}
             <div className="space-y-1.5 border-b border-slate-200 dark:border-slate-800 pb-3.5">
@@ -513,8 +380,8 @@ export const SelectionReviewModal: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <FileText className="h-4 w-4" />
-                    <span>{t('review.generateAndReady')}</span>
+                    <MessageCircle className="h-4 w-4" />
+                    <span>{t('review.sendToWhatsApp')}</span>
                   </>
                 )}
               </button>

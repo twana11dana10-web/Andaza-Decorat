@@ -7,9 +7,6 @@ interface ImportMetaEnv {
   readonly VITE_CLOUDINARY_CLOUD_NAME?: string
   readonly VITE_CLOUDINARY_UPLOAD_PRESET?: string
   readonly VITE_CUSTOM_STORAGE_ENDPOINT?: string
-  readonly VITE_WHATSAPP_API_PROVIDER?: string
-  readonly VITE_WHATSAPP_INSTANCE_ID?: string
-  readonly VITE_WHATSAPP_TOKEN?: string
 }
 
 interface ImportMeta {
