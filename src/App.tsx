@@ -24,7 +24,7 @@ export default function App() {
               <Header />
 
               {/* 2. Main Product Showcase & Vitrine Grid */}
-              <main className="flex-1 w-full relative z-10 flex flex-col justify-center pt-[3.25rem] sm:pt-16 lg:pt-18 pb-8 sm:pb-2.5">
+              <main className="flex-1 w-full relative z-10 flex flex-col justify-center pt-[3.25rem] sm:pt-16 lg:pt-18 pb-12 sm:pb-2.5">
                 <ProductCatalog />
               </main>
 
