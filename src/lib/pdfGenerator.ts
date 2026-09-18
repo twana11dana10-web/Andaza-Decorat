@@ -168,68 +168,63 @@ export async function generateSpecificationPDF(data: PDFDocumentData, language: 
   // 1. Customer Information Box
   const hasEmail = Boolean(data.client?.email)
   const hasNotes = Boolean(data.client?.notes)
-  const custBoxHeight = (hasEmail || hasNotes) ? 30 : 22
+  const custBoxHeight = (hasEmail || hasNotes) ? 22 : 14
   doc.setFillColor(COLOR_BG_LIGHT[0], COLOR_BG_LIGHT[1], COLOR_BG_LIGHT[2])
   doc.roundedRect(margin, y, contentWidth, custBoxHeight, 2, 2, 'F')
   doc.setDrawColor(COLOR_BORDER[0], COLOR_BORDER[1], COLOR_BORDER[2])
   doc.setLineWidth(0.3)
   doc.roundedRect(margin, y, contentWidth, custBoxHeight, 2, 2, 'S')
 
-  doc.setFont(fontFamily, 'bold')
-  doc.setFontSize(8)
-  doc.setTextColor(COLOR_GOLD[0], COLOR_GOLD[1], COLOR_GOLD[2])
-  doc.text('CUSTOMER & DELIVERY DETAILS', margin + 5, y + 6)
-
-  // Customer Details Grid - Row 1: Name, Phone, Email
+  // Customer Details Grid - Row 1: Name, Phone, Email / Address
   doc.setFont(fontFamily, 'bold')
   doc.setFontSize(8)
   doc.setTextColor(COLOR_DARK[0], COLOR_DARK[1], COLOR_DARK[2])
-  doc.text('Client Name:', margin + 5, y + 12)
-  doc.text('Phone:', margin + 65, y + 12)
-  doc.text(hasEmail ? 'Email:' : 'City / Address:', margin + 120, y + 12)
+  doc.text('Client Name:', margin + 5, y + 8)
+  doc.text('Phone:', margin + 65, y + 8)
+  doc.text(hasEmail ? 'Email:' : 'City / Address:', margin + 120, y + 8)
 
   doc.setFont(fontFamily, 'normal')
   doc.setFontSize(8)
   doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2])
-  doc.text(data.client?.clientName || 'Valued Customer', margin + 24, y + 12)
-  doc.text(data.client?.phone || 'Not Specified', margin + 76, y + 12)
+  doc.text(data.client?.clientName || 'Valued Customer', margin + 24, y + 8)
+  doc.text(data.client?.phone || 'Not Specified', margin + 76, y + 8)
   doc.text(
     hasEmail
       ? (data.client?.email || 'N/A')
       : (data.client?.address || data.client?.city || 'Not Specified'),
     hasEmail ? margin + 131 : margin + 142,
-    y + 12
+    y + 8
   )
 
   // Customer Details Grid - Row 2 (if email exists, show address on row 2, or show notes)
   if (hasEmail) {
     doc.setFont(fontFamily, 'bold')
     doc.setTextColor(COLOR_DARK[0], COLOR_DARK[1], COLOR_DARK[2])
-    doc.text('City / Address:', margin + 5, y + 18)
+    doc.text('City / Address:', margin + 5, y + 15)
 
     doc.setFont(fontFamily, 'normal')
     doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2])
-    doc.text(data.client?.address || data.client?.city || 'Not Specified', margin + 27, y + 18)
+    doc.text(data.client?.address || data.client?.city || 'Not Specified', margin + 27, y + 15)
 
     if (data.client?.notes) {
       doc.setFont(fontFamily, 'bold')
       doc.setTextColor(COLOR_DARK[0], COLOR_DARK[1], COLOR_DARK[2])
-      doc.text('Notes:', margin + 85, y + 18)
+      doc.text('Notes:', margin + 85, y + 15)
 
       doc.setFont(fontFamily, 'normal')
       doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2])
       const noteText = doc.splitTextToSize(data.client.notes, contentWidth - 98)
-      doc.text(noteText, margin + 96, y + 18)
+      doc.text(noteText, margin + 96, y + 15)
     }
   } else if (data.client?.notes) {
     doc.setFont(fontFamily, 'bold')
     doc.setTextColor(COLOR_DARK[0], COLOR_DARK[1], COLOR_DARK[2])
-    doc.text('Special Notes:', margin + 5, y + 18)
+    doc.text('Special Notes:', margin + 5, y + 15)
 
     doc.setFont(fontFamily, 'normal')
     doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2])
     const noteText = doc.splitTextToSize(data.client.notes, contentWidth - 32)
-    doc.text(noteText, margin + 26, y + 18)
+    doc.text(noteText, margin + 26, y + 15)
   }
 
   y += custBoxHeight + 6
