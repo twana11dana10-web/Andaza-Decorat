@@ -14,7 +14,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
   }
 
   return (
-    <footer className="w-full fixed bottom-0 left-0 right-0 z-30 py-2 sm:py-2.5 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/85 dark:bg-[#0a0e14]/85 backdrop-blur-2xl transition-colors duration-300 shadow-[0_-4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_-4px_25px_rgba(0,0,0,0.4)]">
+    <footer className="w-full relative z-10 py-2.5 sm:py-3 border-t border-slate-200/80 dark:border-slate-800/80 mt-auto bg-white/70 dark:bg-[#0a0e14]/70 backdrop-blur-xl">
       <div className="max-w-[1700px] mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
 
         {/* Brand Information & Credits (Left on desktop, 2nd on mobile) */}
