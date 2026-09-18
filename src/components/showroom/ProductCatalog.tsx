@@ -18,7 +18,7 @@ export const ProductCatalog: React.FC = () => {
   return (
     <section id="catalog-section" className="w-full relative bg-transparent">
       {/* Product Vitrine Grid Area */}
-      <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-2 sm:pb-3">
+      <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 pt-1.5 sm:pt-2 pb-1 sm:pb-2">
         {filteredProducts.length > 0 ? (
           <motion.div
             initial={{ opacity: 0 }}

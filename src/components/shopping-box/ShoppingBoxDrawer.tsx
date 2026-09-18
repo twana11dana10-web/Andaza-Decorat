@@ -119,7 +119,7 @@ export const ShoppingBoxDrawer: React.FC = () => {
                         setIsOpen(false)
                         setInspectedProduct(localizedProduct)
                       }}
-                      className="text-[11px] sm:text-[15px] font-semibold text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors truncate cursor-pointer leading-tight"
+                      className="text-[11px] sm:text-[15px] md:text-base font-semibold text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors truncate cursor-pointer leading-tight"
                     >
                       {localizedProduct.name}
                     </h4>

@@ -104,7 +104,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* 1. Rich Photo Frame (Cover Fill with Subtle Glow) */}
       <div
         className={cn(
-          "relative aspect-square w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1.5 sm:mb-2.5 transition-colors shadow-inner",
+          "relative aspect-square max-h-[24vh] sm:max-h-[27vh] xl:max-h-none w-full rounded-lg sm:rounded-xl bg-slate-100 dark:bg-[#080b10] overflow-hidden flex items-center justify-center border mb-1.5 sm:mb-2.5 transition-colors shadow-inner",
           isInCart
             ? "border-sky-400/50 dark:border-sky-400/40"
             : "border-slate-200 dark:border-slate-800/70 group-hover:border-amber-400/40 dark:group-hover:border-amber-400/30"
@@ -127,7 +127,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* Title with 2-line clamp */}
           <h3
             className={cn(
-              "font-sans font-semibold text-[11px] sm:text-[13px] transition-colors leading-snug line-clamp-2 min-h-[1.6rem] sm:min-h-[2rem]",
+              "font-sans font-semibold text-[11px] sm:text-[13px] md:text-sm lg:text-[15px] xl:text-base transition-colors leading-snug line-clamp-2 min-h-[1.6rem] sm:min-h-[2rem] md:min-h-[2.35rem] lg:min-h-[2.5rem] xl:min-h-[2.75rem]",
               isInCart
                 ? "text-sky-700 dark:text-sky-300"
                 : "text-slate-900 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-300"
@@ -137,7 +137,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </h3>
 
           {/* Brand Name */}
-          <p className="text-[9px] min-[360px]:text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate">
+          <p className="text-[9px] min-[360px]:text-[10px] sm:text-[11px] md:text-xs text-slate-500 dark:text-slate-400 font-medium truncate">
             {product.brand || t('brand.name')}
           </p>
         </div>

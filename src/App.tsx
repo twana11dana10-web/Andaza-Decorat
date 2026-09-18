@@ -16,7 +16,7 @@ export default function App() {
       <LanguageProvider>
         <ShowroomProvider>
           <ShoppingBoxProvider>
-            <div className="min-h-screen relative flex flex-col bg-[#f8f7f4] dark:bg-[#0c1017] text-slate-900 dark:text-slate-100 selection:bg-amber-500/25 selection:text-amber-950 dark:selection:text-amber-200 font-sans transition-colors duration-300">
+            <div className="min-h-screen min-h-[100dvh] relative flex flex-col bg-[#f8f7f4] dark:bg-[#0c1017] text-slate-900 dark:text-slate-100 selection:bg-amber-500/25 selection:text-amber-950 dark:selection:text-amber-200 font-sans transition-colors duration-300">
               {/* Ambient Background Dots & Micro-Grid */}
               <BackgroundDots />
               
@@ -24,7 +24,7 @@ export default function App() {
               <Header />
 
               {/* 2. Main Product Showcase & Vitrine Grid */}
-              <main className="flex-1 w-full relative z-10 flex flex-col justify-center pt-[3.25rem] sm:pt-20 pb-2 sm:pb-4">
+              <main className="flex-1 w-full relative z-10 flex flex-col justify-center pt-[3.25rem] sm:pt-18 lg:pt-20 pb-20 sm:pb-22">
                 <ProductCatalog />
               </main>
 

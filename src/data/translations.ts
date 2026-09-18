@@ -127,6 +127,14 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'help.floatingText': "If you need help, I'm here",
     'help.whatsappPreset': 'Hello',
 
+    // Social Media Modal
+    'social.modalTitle': 'Official Platforms',
+    'social.modalSubtitle': 'Follow Andaza Decorat across our official channels for the latest facade designs, luxury decoration, and updates.',
+    'social.openAccount': 'Visit',
+    'social.buttonTitle': 'Social Media Channels',
+    'social.buttonText': 'Our Social Media',
+    'social.accountsCount': '3 Official Platforms',
+
     // Common
     'common.required': '*',
     'common.optional': '(Optional)',
@@ -227,6 +235,14 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // WhatsApp Floating Help
     'help.floatingText': 'إذا كنت بحاجة إلى مساعدة أنا هنا',
     'help.whatsappPreset': 'مرحباً',
+
+    // Social Media Modal
+    'social.modalTitle': 'المنصات الرسمية',
+    'social.modalSubtitle': 'تابع أندازة ديكورات عبر منصاتنا الرسمية لمشاهدة أحدث تصاميم الواجهات والديكورات الفاخرة.',
+    'social.openAccount': 'زيارة',
+    'social.buttonTitle': 'منصات التواصل الاجتماعي',
+    'social.buttonText': 'وسائل التواصل الاجتماعي',
+    'social.accountsCount': '3 منصات رسمية',
 
     // Common
     'common.required': '*',
@@ -329,6 +345,14 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     'help.floatingText': 'ئەگەر پێویستت بە هاوکارییە من لێرەم',
     'help.whatsappPreset': 'سڵاو',
 
+    // Social Media Modal
+    'social.modalTitle': 'پلاتفۆرمە فەرمییەکان',
+    'social.modalSubtitle': 'لە ڕێگەی تۆڕە کۆمەڵایەتییە فەرمییەکانمانەوە پەیوەندیمان پێوە بکەن بۆ بینینی نوێترین دیزاین و پڕۆژە ناوازەکانمان.',
+    'social.openAccount': 'سەردان',
+    'social.buttonTitle': 'تۆڕە کۆمەڵایەتییەکان',
+    'social.buttonText': 'تۆڕە کۆمەڵایەتییەکانمان',
+    'social.accountsCount': '3 پلاتفۆرمی فەرمی',
+
     // Common
     'common.required': '*',
     'common.optional': '(ئارەزوومەندانە)',
@@ -429,6 +453,14 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     // WhatsApp Floating Help
     'help.floatingText': 'Yardıma ihtiyacınız varsa buradayım',
     'help.whatsappPreset': 'Merhaba',
+
+    // Social Media Modal
+    'social.modalTitle': 'Resmi Platformlar',
+    'social.modalSubtitle': 'En yeni lüks cephe tasarımları ve güncellemeler için Andaza Decorat resmi hesaplarımızı takip edin.',
+    'social.openAccount': 'Ziyaret Et',
+    'social.buttonTitle': 'Sosyal Medya Kanalları',
+    'social.buttonText': 'Sosyal Medyamız',
+    'social.accountsCount': '3 Resmi Platform',
 
     // Common
     'common.required': '*',

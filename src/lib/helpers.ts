@@ -32,7 +32,7 @@ export function formatPrice(amount: number, currency?: string): string {
  * normalizing local leading-zero formats to international dial codes.
  */
 export function buildWhatsAppLink(message: string): string {
-  const raw = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07509151156'
+  const raw = BRAND_CONFIG.contact.whatsapp || BRAND_CONFIG.contact.phone || '07517447522'
   const digits = raw.replace(/[^0-9]/g, '')
   const formatted = digits.startsWith('0')
     ? '964' + digits.slice(1)
