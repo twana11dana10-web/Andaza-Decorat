@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 import { openWhatsAppChat } from '../../lib/helpers'
 import { BRAND_CONFIG } from '../../data/brand'
-import { ArrowRight, Share2 } from 'lucide-react'
+import { Share2 } from 'lucide-react'
 import { SocialMediaModal } from './SocialMediaModal'
 
 export const WhatsAppFloatingHelp: React.FC = () => {
@@ -76,10 +76,6 @@ export const WhatsAppFloatingHelp: React.FC = () => {
               </span>
             </div>
 
-            {/* Subtle mobile arrow */}
-            <div className="sm:hidden text-slate-400 group-hover:text-sky-500 transition-colors shrink-0">
-              <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180" />
-            </div>
           </button>
 
         </div>
