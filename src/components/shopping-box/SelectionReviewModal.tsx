@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import {
   ArrowLeft,
-  CheckCircle2,
+  ArrowRight,
   Loader2,
   AlertTriangle,
-  MessageCircle,
+  Send,
   User,
   Phone,
   MapPin,
+  Share2,
+  Download,
+  FileText,
+  Sparkles,
 } from 'lucide-react'
 import {
   Dialog,
@@ -23,7 +27,13 @@ import { generateSpecificationPDF } from '../../lib/pdfGenerator'
 import { loadArabicFont, loadLatinFont, needsArabicFont, needsLatinFont } from '../../lib/pdfFontLoader'
 import { formatPrice, getNextInvoiceNumber } from '../../lib/helpers'
 import { getLocalizedProduct } from '../../lib/localizeProduct'
-import { showroomWhatsAppUrl, uploadInvoicePdf } from '../../lib/whatsappApi'
+
+interface ReadyInvoice {
+  docNumber: string
+  blob: Blob
+  file: File
+  summaryText: string
+}
 
 export const SelectionReviewModal: React.FC = () => {
   const {
@@ -42,10 +52,8 @@ export const SelectionReviewModal: React.FC = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generationError, setGenerationError] = useState<string | null>(null)
   const [phoneError, setPhoneError] = useState<string | null>(null)
-  // Set once WhatsApp has been opened with the drafted invoice message
-  const [sentDocNumber, setSentDocNumber] = useState<string | null>(null)
-  // True when the PDF link could not be created and the file was downloaded instead
-  const [needsManualAttach, setNeedsManualAttach] = useState(false)
+  const [readyInvoice, setReadyInvoice] = useState<ReadyInvoice | null>(null)
+  const [downloadNotice, setDownloadNotice] = useState<string | null>(null)
 
   if (!isReviewOpen) return null
 
@@ -58,28 +66,27 @@ export const SelectionReviewModal: React.FC = () => {
     setIsReviewOpen(false)
     setGenerationError(null)
     setPhoneError(null)
-    setSentDocNumber(null)
-    setNeedsManualAttach(false)
+    setReadyInvoice(null)
+    setDownloadNotice(null)
   }
 
   const downloadPdf = (blob: Blob, docNumber: string) => {
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
-    a.download = `order-invoice-${docNumber.toLowerCase().replace(/[^a-z0-9_-]/g, '')}.pdf`
+    a.download = `Invoice-${docNumber.replace(/[^a-zA-Z0-9_-]/g, '')}.pdf`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
   }
 
   /**
-   * One-click checkout: builds the invoice PDF, uploads it, then opens the showroom
-   * WhatsApp chat with the message (including the PDF link) already drafted.
+   * Generates the official invoice PDF file and transitions to the simple PDF share screen.
    */
   const handleCheckout = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
     if (items.length === 0) return
 
-    // Validate phone number: must be 10 or 11 digits (Arabic-Indic digits normalized)
+    // Validate phone number: must be 10 or 11 digits
     const digitsOnly = (clientInfo.phone || '')
       .replace(/[\u0660-\u0669]/g, d => String(d.charCodeAt(0) - 0x0660))
       .replace(/[\u06F0-\u06F9]/g, d => String(d.charCodeAt(0) - 0x06F0))
@@ -90,14 +97,9 @@ export const SelectionReviewModal: React.FC = () => {
     }
     setPhoneError(null)
 
-    // Open the tab now, while still inside the click, so popup blockers allow it
-    const waTab = window.open('', '_blank')
-    if (waTab) waTab.document.title = 'WhatsApp…'
-
     setIsGenerating(true)
     setGenerationError(null)
     try {
-      // Pre-load the required PDF font (cached after first load)
       if (needsArabicFont(language)) {
         await loadArabicFont()
       } else if (needsLatinFont(language)) {
@@ -119,7 +121,6 @@ export const SelectionReviewModal: React.FC = () => {
       })
       const now = `${datePart}, ${timePart}`
 
-      // Localize items for the invoice PDF document
       const localizedItems = items.map(item => ({
         ...item,
         product: getLocalizedProduct(item.product, language),
@@ -145,70 +146,186 @@ export const SelectionReviewModal: React.FC = () => {
 
       const doc = await generateSpecificationPDF(documentData, language)
       const blob = doc.output('blob')
-      const pdfUrl = await uploadInvoicePdf(blob)
+      const fileName = `Invoice-${docNum.replace(/[^a-zA-Z0-9_-]/g, '')}.pdf`
+      const file = new File([blob], fileName, { type: 'application/pdf' })
 
-      // Customer details live inside the PDF; the message only carries the invoice link
-      let message = t('review.waMessageCaption').replace('{docNumber}', docNum)
-      if (pdfUrl) {
-        message += `\n${pdfUrl}`
-      } else {
-        // No upload endpoint available: hand the file over for manual attaching
-        downloadPdf(blob, docNum)
+      // Clean text summary (WITHOUT any URL link)
+      let summaryText = `📋 ${t('review.waMessageCaption').replace('{docNumber}', docNum)}`
+      if (clientInfo.clientName?.trim()) {
+        summaryText += `\n👤 ${clientInfo.clientName.trim()}`
       }
-
-      const waUrl = showroomWhatsAppUrl(message)
-      if (waTab) {
-        waTab.location.href = waUrl
-      } else {
-        window.location.href = waUrl
+      if (clientInfo.phone?.trim()) {
+        summaryText += `\n📞 ${clientInfo.phone.trim()}`
       }
+      summaryText += `\n💰 ${formatPrice(totalValuation)}`
 
-      setNeedsManualAttach(!pdfUrl)
-      setSentDocNumber(docNum)
+      setReadyInvoice({
+        docNumber: docNum,
+        blob,
+        file,
+        summaryText,
+      })
+      setDownloadNotice(null)
     } catch (err) {
       console.error('Error generating invoice:', err)
-      waTab?.close()
       setGenerationError(t('review.generationError'))
     } finally {
       setIsGenerating(false)
     }
   }
 
+  /**
+   * Universal PDF share: Uses device native share with the ACTUAL PDF FILE ONLY.
+   */
+  const handleSendToApp = async (channel: 'whatsapp' | 'telegram' | 'viber') => {
+    if (!readyInvoice) return
+
+    // 1. If Web Share API with files is supported (mobile phones):
+    if (
+      typeof navigator !== 'undefined' &&
+      navigator.canShare &&
+      navigator.canShare({ files: [readyInvoice.file] })
+    ) {
+      try {
+        await navigator.share({
+          files: [readyInvoice.file],
+          title: `Invoice ${readyInvoice.docNumber}`,
+        })
+        return
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return
+      }
+    }
+
+    // 2. Desktop fallback:
+    // Download the PDF file directly to their computer
+    downloadPdf(readyInvoice.blob, readyInvoice.docNumber)
+
+    // Open target application without pre-filling any text message
+    if (channel === 'whatsapp') {
+      window.open('https://api.whatsapp.com/send', '_blank')
+    } else if (channel === 'telegram') {
+      window.open('https://t.me', '_blank')
+    } else if (channel === 'viber') {
+      window.location.href = 'viber://forward'
+    }
+
+    setDownloadNotice(t('review.waDesktopNote'))
+  }
+
+  /** Direct Native Device Share */
+  const handleNativeShare = async () => {
+    if (!readyInvoice) return
+    if (
+      typeof navigator !== 'undefined' &&
+      navigator.canShare &&
+      navigator.canShare({ files: [readyInvoice.file] })
+    ) {
+      try {
+        await navigator.share({
+          files: [readyInvoice.file],
+          title: `Invoice ${readyInvoice.docNumber}`,
+        })
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return
+      }
+    } else {
+      downloadPdf(readyInvoice.blob, readyInvoice.docNumber)
+      setDownloadNotice(t('review.waDesktopNote'))
+    }
+  }
+
   return (
     <Dialog open={isReviewOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="max-w-3xl w-full sm:w-[92vw] p-0 sm:p-7 max-h-[94vh] sm:max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0f141e] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-2xl">
+      <DialogContent className="max-w-md w-full sm:w-[92vw] p-5 sm:p-7 max-h-[94vh] sm:max-h-[90vh] overflow-y-auto bg-white dark:bg-[#0c1017] border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-2xl rounded-2xl">
         
-        {/* WhatsApp Opened Confirmation */}
-        {sentDocNumber ? (
-          <div className="space-y-4 sm:space-y-5 py-2 sm:py-3 animate-fade-in text-center px-4 sm:px-0">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-sky-500/15 text-sky-600 dark:text-sky-400 mx-auto flex items-center justify-center border border-sky-500/30">
-              <CheckCircle2 className="h-6 w-6 sm:h-7 sm:w-7" />
-            </div>
+        {/* =================================================================== */}
+        {/* VIEW 2: Reorganized, High-End Luxury Invoice PDF Share Screen       */}
+        {/* =================================================================== */}
+        {readyInvoice ? (
+          <div className="space-y-4 animate-fade-in text-center pt-2 sm:pt-1">
+            
+            {/* 1. Luxury Invoice Card */}
+            <div className="relative overflow-hidden rounded-2xl border border-amber-500/30 bg-gradient-to-b from-amber-500/12 via-amber-500/5 to-transparent p-4 sm:p-5 text-center shadow-md">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/25 mb-2.5">
+                <FileText className="w-3.5 h-3.5" />
+                <span>{t('review.officialPdfInvoice')}</span>
+              </div>
 
-            <div className="space-y-1 sm:space-y-1.5">
-              <h3 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white">
-                {t('review.waOpenedTitle')}
+              <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white font-mono">
+                {readyInvoice.docNumber}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                <strong className="text-amber-600 dark:text-amber-400 font-mono">{sentDocNumber}</strong> • <strong className="text-slate-900 dark:text-white">{formatPrice(totalValuation)}</strong>
+
+              <p className="text-lg sm:text-xl font-bold text-amber-600 dark:text-amber-400 mt-1">
+                {formatPrice(totalValuation)}
               </p>
-              <p className="text-xs sm:text-sm text-sky-600 dark:text-sky-400/90 font-medium max-w-md mx-auto">
-                {needsManualAttach ? t('review.waDesktopNote') : t('review.waOpenedNote')}
-              </p>
+
+              {clientInfo.clientName && (
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 truncate">
+                  {clientInfo.clientName} {clientInfo.phone ? `• ${clientInfo.phone}` : ''}
+                </p>
+              )}
             </div>
 
-            <div className="pt-2">
+            {/* Desktop Notice if downloaded */}
+            {downloadNotice && (
+              <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs animate-fade-in">
+                {downloadNotice}
+              </div>
+            )}
+
+            {/* 2. Two Simple Action Buttons */}
+            <div className="space-y-3 pt-2">
+              
+              {/* Send / Share PDF Button (Primary) */}
               <button
+                type="button"
+                onClick={handleNativeShare}
+                className="w-full py-4 px-5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md hover:shadow-[0_0_24px_rgba(217,170,75,0.35)] active:scale-[0.98] transition-all cursor-pointer"
+              >
+                <Share2 className="w-5 h-5" />
+                <span>{t('review.sharePdfFile')}</span>
+              </button>
+
+              {/* Download PDF Button (Secondary) */}
+              <button
+                type="button"
+                onClick={() => downloadPdf(readyInvoice.blob, readyInvoice.docNumber)}
+                className="w-full py-3.5 px-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#141a26] hover:bg-slate-100 dark:hover:bg-[#1a2230] text-slate-800 dark:text-slate-200 font-semibold text-sm flex items-center justify-center gap-2.5 shadow-xs transition-all cursor-pointer active:scale-[0.98]"
+              >
+                <Download className="w-5 h-5 text-slate-500 dark:text-slate-400" />
+                <span>{t('review.downloadPdf')}</span>
+              </button>
+
+            </div>
+
+            {/* 4. Elegant Clean Footer Navigation */}
+            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-200 dark:border-slate-800">
+              <button
+                type="button"
+                onClick={() => setReadyInvoice(null)}
+                className="hover:text-amber-500 transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 rtl:rotate-180" />
+                <span>{t('review.editDetails')}</span>
+              </button>
+
+              <button
+                type="button"
                 onClick={handleClose}
-                className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+                className="hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
               >
                 {t('review.returnToShowroom')}
               </button>
             </div>
+
           </div>
         ) : (
-          /* User Information Form */
-          <form onSubmit={handleCheckout} className="space-y-3.5 sm:space-y-4 animate-fade-in text-left px-4 sm:px-0 pb-2 sm:pb-0">
+          
+          /* =================================================================== */
+          /* VIEW 1: User Information Form                                      */
+          /* =================================================================== */
+          <form onSubmit={handleCheckout} className="space-y-3.5 sm:space-y-4 animate-fade-in text-left rtl:text-right">
             
             {/* Header */}
             <div className="space-y-1.5 border-b border-slate-200 dark:border-slate-800 pb-3.5">
@@ -217,13 +334,14 @@ export const SelectionReviewModal: React.FC = () => {
                 onClick={handleBackToDrawer}
                 className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer mb-1"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
                 <span>{t('review.backToShoppingBox')}</span>
               </button>
 
-              <DialogHeader className="p-0 text-left">
-                <DialogTitle className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white">
-                  {t('review.title')}
+              <DialogHeader className="p-0 text-left rtl:text-right">
+                <DialogTitle className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-amber-500 shrink-0" />
+                  <span>{t('review.title')}</span>
                 </DialogTitle>
               </DialogHeader>
 
@@ -235,9 +353,8 @@ export const SelectionReviewModal: React.FC = () => {
             {/* Inputs Grid */}
             <div className="space-y-3.5 pt-1">
               
-              {/* Row 1: Full Name (REQUIRED) & Phone Number (REQUIRED - min 10 digits) */}
+              {/* Row 1: Full Name & Phone Number */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 items-start">
-                {/* Full Name */}
                 <div>
                   <label className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-2">
                     <User className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
@@ -255,7 +372,6 @@ export const SelectionReviewModal: React.FC = () => {
                   />
                 </div>
 
-                {/* Phone Number with 10 or 11 digits enforcement */}
                 <div>
                   <label className="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-2">
                     <Phone className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0" />
@@ -271,8 +387,6 @@ export const SelectionReviewModal: React.FC = () => {
                       placeholder={t('review.phonePlaceholder')}
                       value={clientInfo.phone || ''}
                       onChange={(e) => {
-                        // Normalize Arabic-Indic (٠-٩) and Persian (۰-۹) digits to Latin 0-9,
-                        // then filter strictly to numbers and cap at 11 digits
                         const normalized = e.target.value
                           .replace(/[\u0660-\u0669]/g, d => String(d.charCodeAt(0) - 0x0660))
                           .replace(/[\u06F0-\u06F9]/g, d => String(d.charCodeAt(0) - 0x06F0))
@@ -289,7 +403,7 @@ export const SelectionReviewModal: React.FC = () => {
                       }`}
                     />
                     <span
-                      className={`absolute right-3 top-1/2 -translate-y-1/2 text-[10px] sm:text-[11px] font-mono pointer-events-none transition-colors select-none ${
+                      className={`absolute right-3 rtl:right-auto rtl:left-3 top-1/2 -translate-y-1/2 text-[10px] sm:text-[11px] font-mono pointer-events-none transition-colors select-none ${
                         (clientInfo.phone || '').length >= 10 && (clientInfo.phone || '').length <= 11
                           ? 'text-sky-500 font-bold'
                           : 'text-slate-400 dark:text-slate-500'
@@ -352,7 +466,7 @@ export const SelectionReviewModal: React.FC = () => {
                   {t('review.readyToSend')}
                 </span>
               </div>
-              <div className="text-right">
+              <div className="text-right rtl:text-left">
                 <span className="text-[11px] text-slate-500 dark:text-slate-400 uppercase block font-medium">{t('review.totalInDinar')}</span>
                 <span className="text-base sm:text-xl font-bold text-slate-900 dark:text-white">{formatPrice(totalValuation)}</span>
               </div>
@@ -380,8 +494,8 @@ export const SelectionReviewModal: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <MessageCircle className="h-4 w-4" />
-                    <span>{t('review.sendToWhatsApp')}</span>
+                    <Send className="h-4 w-4 rtl:rotate-180" />
+                    <span>{t('review.sendInvoice')}</span>
                   </>
                 )}
               </button>

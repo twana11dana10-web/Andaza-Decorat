@@ -44,8 +44,8 @@ const DialogContent = React.forwardRef<
       {/* Mobile drag handle indicator */}
       <div className="sm:hidden w-10 h-1 rounded-full bg-slate-300 dark:bg-slate-600 mx-auto shrink-0 -mt-1 mb-1" />
       {children}
-      <DialogPrimitive.Close className="absolute right-2.5 top-2.5 sm:right-3.5 sm:top-3.5 rtl:right-auto rtl:left-2.5 sm:rtl:left-3.5 h-8 w-8 sm:h-10 sm:w-10 rounded-full flex items-center justify-center text-muted-foreground transition-all hover:bg-secondary hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none cursor-pointer z-10 bg-slate-100/80 dark:bg-slate-800/80 sm:bg-transparent dark:sm:bg-transparent">
-        <X className="h-4 w-4 sm:h-5 sm:w-5" />
+      <DialogPrimitive.Close className="absolute right-3.5 top-3.5 sm:right-4 sm:top-4 rtl:right-auto rtl:left-3.5 sm:rtl:left-4 h-8 w-8 sm:h-9 sm:w-9 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-[#1a2130] dark:hover:bg-[#253047] border border-slate-200 dark:border-slate-700/60 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 cursor-pointer z-50">
+        <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

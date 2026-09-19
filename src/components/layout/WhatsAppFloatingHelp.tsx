@@ -15,7 +15,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
 
   return (
     <footer className="w-full relative z-10 py-2.5 sm:py-3 border-t border-slate-200/80 dark:border-slate-800/80 mt-auto bg-white/70 dark:bg-[#0a0e14]/70 backdrop-blur-xl">
-      <div className="max-w-[1700px] mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
+      <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
 
         {/* Brand Information & Credits (Left on desktop, 2nd on mobile) */}
         <div className="w-full sm:w-auto space-y-1 sm:space-y-1.5 text-center sm:text-left rtl:sm:text-right order-2 sm:order-1">
@@ -40,7 +40,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
           {/* Social Media Channels Button (Opens popup listing Facebook, Instagram, TikTok) */}
           <button
             onClick={() => setIsSocialModalOpen(true)}
-            className="group inline-flex items-center gap-2 sm:gap-2.5 bg-white dark:bg-[#131823] hover:bg-amber-50/70 dark:hover:bg-amber-950/30 text-slate-800 dark:text-slate-100 hover:text-amber-600 dark:hover:text-amber-400 px-3 sm:px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/60 dark:hover:border-amber-500/50 shadow-sm hover:shadow-[0_0_20px_rgba(217,170,75,0.25)] transition-all duration-300 cursor-pointer active:scale-98 shrink-0"
+            className="group inline-flex items-center gap-1.5 sm:gap-2.5 bg-white dark:bg-[#131823] hover:bg-amber-50/70 dark:hover:bg-amber-950/30 text-slate-800 dark:text-slate-100 hover:text-amber-600 dark:hover:text-amber-400 px-2.5 sm:px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/60 dark:hover:border-amber-500/50 shadow-sm hover:shadow-[0_0_20px_rgba(217,170,75,0.25)] transition-all duration-300 cursor-pointer active:scale-98 shrink-0"
             title={t('social.buttonTitle')}
             aria-label={t('social.buttonTitle')}
           >
@@ -56,10 +56,10 @@ export const WhatsAppFloatingHelp: React.FC = () => {
           {/* WhatsApp Direct Contact Button */}
           <button
             onClick={handleWhatsAppChat}
-            className="flex-1 sm:flex-initial group inline-flex items-center justify-between sm:justify-start gap-2 sm:gap-3 bg-white dark:bg-[#131823] hover:bg-sky-50/70 dark:hover:bg-sky-950/40 text-slate-800 dark:text-slate-100 hover:text-sky-700 dark:hover:text-sky-300 px-3 sm:px-4.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-sky-500/60 dark:hover:border-sky-500/50 shadow-sm hover:shadow-[0_0_20px_rgba(14,165,233,0.25)] transition-all duration-300 cursor-pointer active:scale-98"
+            className="flex-1 sm:flex-initial group inline-flex items-center justify-between sm:justify-start gap-1.5 sm:gap-3 bg-white dark:bg-[#131823] hover:bg-sky-50/70 dark:hover:bg-sky-950/40 text-slate-800 dark:text-slate-100 hover:text-sky-700 dark:hover:text-sky-300 px-2.5 sm:px-4.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-sky-500/60 dark:hover:border-sky-500/50 shadow-sm hover:shadow-[0_0_20px_rgba(14,165,233,0.25)] transition-all duration-300 cursor-pointer active:scale-98"
             aria-label="Contact us on WhatsApp for help"
           >
-            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
               {/* Glowing sky blue icon badge */}
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-500 dark:text-sky-400 group-hover:scale-110 group-hover:bg-sky-500/25 transition-all duration-300 shrink-0 shadow-xs">
                 <svg
@@ -71,7 +71,7 @@ export const WhatsAppFloatingHelp: React.FC = () => {
               </div>
 
               {/* Text next to the icon */}
-              <span className="text-[11px] sm:text-[13px] font-semibold tracking-wide truncate">
+              <span className="text-[11px] sm:text-[13px] font-semibold tracking-wide whitespace-nowrap">
                 {t('help.floatingText')}
               </span>
             </div>
