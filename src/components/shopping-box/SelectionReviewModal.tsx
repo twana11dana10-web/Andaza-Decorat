@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import {
   ArrowLeft,
-  ArrowRight,
   Loader2,
   AlertTriangle,
   Send,
@@ -174,44 +173,6 @@ export const SelectionReviewModal: React.FC = () => {
     }
   }
 
-  /**
-   * Universal PDF share: Uses device native share with the ACTUAL PDF FILE ONLY.
-   */
-  const handleSendToApp = async (channel: 'whatsapp' | 'telegram' | 'viber') => {
-    if (!readyInvoice) return
-
-    // 1. If Web Share API with files is supported (mobile phones):
-    if (
-      typeof navigator !== 'undefined' &&
-      navigator.canShare &&
-      navigator.canShare({ files: [readyInvoice.file] })
-    ) {
-      try {
-        await navigator.share({
-          files: [readyInvoice.file],
-          title: `Invoice ${readyInvoice.docNumber}`,
-        })
-        return
-      } catch (err: any) {
-        if (err?.name === 'AbortError') return
-      }
-    }
-
-    // 2. Desktop fallback:
-    // Download the PDF file directly to their computer
-    downloadPdf(readyInvoice.blob, readyInvoice.docNumber)
-
-    // Open target application without pre-filling any text message
-    if (channel === 'whatsapp') {
-      window.open('https://api.whatsapp.com/send', '_blank')
-    } else if (channel === 'telegram') {
-      window.open('https://t.me', '_blank')
-    } else if (channel === 'viber') {
-      window.location.href = 'viber://forward'
-    }
-
-    setDownloadNotice(t('review.waDesktopNote'))
-  }
 
   /** Direct Native Device Share */
   const handleNativeShare = async () => {
